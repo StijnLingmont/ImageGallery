@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@yield('title')</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <meta name="referrer" content="origin-when-cross-origin" />
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- CSS -->
-    <link href="/css/app.css" type="text/css" rel="stylesheet">
-    @yield('styles')
+    <title>@yield('title') | Image Gallery</title>
 
-    @yield('favicon')
-    @yield('scriptsHead')
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
+    @include('layout.header')
+
     <main id="page">
         @yield('content')
     </main>
 
-    <!-- Body Scripts -->
-    <script src="/js/app.js"></script>
-    @yield('scriptsBody')
+    @include('layout.footer')
 </body>
 </html>
