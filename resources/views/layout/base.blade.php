@@ -20,12 +20,10 @@
 </head>
 
 <body>
+    <main id="page">
     @include('layout.header')
 
-    <main id="page">
-        @yield('content')
+    @yield('content')
     </main>
-
-    @include('layout.footer')
 </body>
 </html>

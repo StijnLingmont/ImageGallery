@@ -1,83 +1,85 @@
 .menu-button
-	grid-column: 12
-	position: relative
-	display: inline-block
-	z-index: 9999
-	cursor: pointer
-	width: 24px
+    display: flex
+    align-items: center
+    height: 100%
+    grid-column: 12
+    position: relative
+    z-index: 9999
+    cursor: pointer
+    width: 24px
 
-	@media(min-width: $sm-grid)
-		display: none
+    @media(min-width: $sm-grid)
+        display: none
 		
-	@media(min-width: $md-grid)
-		width: 30px
+    @media(min-width: $md-grid)
+        width: 30px
+    
+    @media(min-width: $hd-grid)
+        width: 40px
 
-	@media(min-width: $hd-grid)
-		width: 40px
+    span
+        position: relative
+        display: inline-block
+        width: 100%
+        background-color: $color-black
+        vertical-align: middle
+        z-index: 9999
+        transition: background .2s
+        height: 2px
+     
+        @media(min-width: $md-grid)
+            height: 3px
 
-	span
-		position: relative
-		display: inline-block
-		width: 100%
-		background-color: $color-black
-		vertical-align: middle
-		z-index: 9999
-		transition: background .2s
-		height: 2px
+        @media(min-width: $hd-grid)
+            height: 4px
 
-		@media(min-width: $md-grid)
-			height: 3px
+        &:before,
+        &:after
+            position: absolute
+            content: ''
+            display: block
+            //width: 1.5rem
+            width: 100%
+            height: 100%
+            background-color: $color-black
+            transform-origin: center center
 
-		@media(min-width: $hd-grid)
-			height: 4px
-
-		&:before,
-		&:after
-			position: absolute
-			content: ''
-			display: block
-			//width: 1.5rem
-			width: 100%
-			height: 100%
-			background-color: $color-black
-			transform-origin: center center
-
-		&:before
-			transition: transform .2s, top .2s .2s, background .2s
-			top: -8px
+        &:before
+            transition: transform .2s, top .2s .2s, background .2s
+            top: -8px
 			
-			@media(min-width: $md-grid)
-				top: -10px
-
-			@media(min-width: $hd-grid)
-				top: -15px
-
-		&:after
-			transition: transform .2s, bottom .2s .2s, background .2s
-			bottom: -8px
-			
-			@media(min-width: $md-grid)
-				bottom: -10px
-
-			@media(min-width: $hd-grid)
-				bottom: -15px
-
-
+            @media(min-width: $md-grid)
+                top: -10px
+    
+            @media(min-width: $hd-grid)
+                top: -15px
+    
+        &:after
+            transition: transform .2s, bottom .2s .2s, background .2s
+            bottom: -8px
+            
+            @media(min-width: $md-grid)
+                bottom: -10px
+            
+            @media(min-width: $hd-grid)
+                bottom: -15px
+    
+    
 .is-active .menu-button
-	span
-		transition: background .2s
-		background-color: rgba($color-black, 0)
-
-		&:before,
-		&:after
-			background-color: rgba($color-black, 1)
-
-		&:before
-			top: 0
-			transform: rotate(45deg)
-			transition: transform .2s .2s, top .2s, background .2s
-
-		&:after
-			bottom: 0
-			transform: rotate(-45deg)
-			transition: transform .2s .2s, bottom .2s, background .2s
+    span
+        transition: background .2s
+        background-color: rgba($color-black, 0)
+    
+        &:before,
+        &:after
+            background-color: rgba($color-black, 1)
+    
+        &:before
+            top: 0
+            transform: rotate(45deg)
+            transition: transform .2s .2s, top .2s, background .2s
+    
+        &:after
+            bottom: 0
+            transform: rotate(-45deg)
+            transition: transform .2s .2s, bottom .2s, background .2s
