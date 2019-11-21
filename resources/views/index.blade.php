@@ -1,9 +1,14 @@
 @extends('layout.base')
 
 @section('title')
-    Hello World
+    Homepage
 @endsection
 
 @section('content')
-    <h1>Hello World</h1>
+    <div class="container">
+        <section class="section">
+            <h1>Hello World</h1>
+        </section>
+
+    </div>
 @endsection

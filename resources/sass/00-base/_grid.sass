@@ -1,0 +1,25 @@
+#page
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+.container
+  width: calc(100% - 30px)
+  margin: 0 auto
+  padding-right: 15px
+  padding-left: 15px
+
+  @media (min-width: $sm-grid)
+    max-width: $lg-grid
+
+.grid
+  display: grid
+  grid-template-columns: repeat(12, 1fr)
+  grid-gap: 15px
+
+.section
+    margin-bottom: 3rem
+    @media(min-width: $sm-grid)
+        margin-bottom: 5rem
+    transform: translateY(50px)
+    transition: all 1s ease-out
