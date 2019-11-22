@@ -6,20 +6,11 @@
 
 @section('content')
     <section class="page-header_home">
-{{--        <h1>--}}
-{{--            <span>Explore the world</span>--}}
-{{--            <span>“In photography there is a reality so subtle that it becomes more real than reality.”</span>--}}
-{{--        </h1>--}}
+        <div class="header_block">
+            <h1 id="page-header_primary">
+                <span class="page-header_title">Explore the world</span>
+                <span class="page-header_sub">“Life can be expressed in a picture”</span>
+            </h1>
+        </div>
     </section>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores aspernatur aut commodi consequuntur, debitis dolore ducimus, excepturi magnam minus nemo nobis pariatur perferendis, saepe sapiente sunt totam ut vero.</p>
 @endsection

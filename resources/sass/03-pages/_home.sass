@@ -4,5 +4,28 @@
     background-size: cover
     background-repeat: no-repeat
     width: 100%
-    height: 85vh
+    height: 40rem
+    max-height: 90vh
     color: white
+    position: relative
+
+    .header_block
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        text-align: center
+        width: 60rem
+        max-width: 90%
+        #page-header_primary
+            color: $color-white
+            text-transform: uppercase
+            .page-header_title
+                display: block
+                +title-hd()
+                font-weight: 400
+
+            .page-header_sub
+                display: block
+                +subtitle-hd()
+                font-weight: 500
