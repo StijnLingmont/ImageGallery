@@ -10,12 +10,13 @@
     <title>@yield('title') | Image Gallery</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700i&display=swap" rel="stylesheet">
 
+
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
@@ -25,5 +26,7 @@
 
     @yield('content')
     </main>
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

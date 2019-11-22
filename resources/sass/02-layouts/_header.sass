@@ -1,11 +1,17 @@
 #header
-    background-color: transparent
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 999
+    background-color: $color-primary
     display: flex
     height: 3.7rem
+    transition: all 300ms ease
     
     #logo
-        position: relative
         grid-column: 1/6
+        
         #logo-item
             position: absolute
             top: 50%
@@ -21,17 +27,17 @@
         #navigation
             height: 100%
             margin-left: auto
-            display: none
+            display: flex
             justify-content: flex-end
             align-items: center
-            @media(min-width: $sm-grid)
-                display: flex
             
-            .nav-item
-                form,a
-                    padding: 0 1rem
-    
-    &.sticky-header
+            .dropdown
+                height: 100%
+                display: flex
+                align-items: center
+                
+    &.is-transparent
         background-color: $color-primary
-        
-    
+        @media(min-width: $md-grid)
+            background-color: $color-transparent
+            color: black
