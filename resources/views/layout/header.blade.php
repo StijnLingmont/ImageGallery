@@ -28,7 +28,7 @@
                                 </template>
                                 <template>
                                     <li class="dropdown-item"><a class="dropdown-link" href="">Account</a></li>
-                                    <li class="dropdown-item"><a class="dropdown-link" href="">Albums</a></li>
+                                    <li class="dropdown-item"><a class="dropdown-link" href="{{ route('album.index') }}">Albums</a></li>
                                     <li class="dropdown-item">
                                         <form action="{{ route('logout') }}" method="post">
                                             @csrf
