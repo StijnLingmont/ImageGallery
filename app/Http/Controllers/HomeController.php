@@ -11,11 +11,16 @@ class HomeController extends Controller
     {
 //        $this->middleware('auth');
     }
+
     public function index()
     {
         $transparentHeader = true;
         return view('index', [
             'transparentHeader' => $transparentHeader,
         ]);
+    }
+
+    public function dashboard() {
+        return view('dashboard');
     }
 }
