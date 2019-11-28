@@ -1,7 +1,7 @@
 @extends('layout.base')
 
 @section('content')
-<section class="login">
+<section class="login default-forum">
     <div class="container">
         <form class="forum" method="POST" action="{{ route('login') }}">
             @csrf
