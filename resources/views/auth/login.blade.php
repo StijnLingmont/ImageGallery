@@ -1,5 +1,7 @@
 @extends('layout.base')
 
+@section('title', 'Login')
+
 @section('content')
 <section class="login default-forum">
     <div class="container">

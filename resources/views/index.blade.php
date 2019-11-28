@@ -1,8 +1,6 @@
 @extends('layout.base')
 
-@section('title')
-    Homepage
-@endsection
+@section('title', 'Homepage')
 
 @section('content')
     <section class="page-header_home">
