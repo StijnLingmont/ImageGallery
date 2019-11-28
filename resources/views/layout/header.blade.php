@@ -9,10 +9,10 @@
                 <ul id="navigation">
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Sign in</a>
+                            <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-user"></i><span class="pc-text is-hidden-on-mobile">Sign in</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Sign up</a>
+                            <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-sign-in-alt"></i><span class=" pc-text is-hidden-on-mobile">Sign up</span></a>
                         </li>
                     @else
                         <li class="dropdown">
