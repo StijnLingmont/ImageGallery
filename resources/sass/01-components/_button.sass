@@ -1,46 +1,16 @@
 .btn
-  font-size: 0.85rem
-  font-weight: $font-weight-bold
-  width: 100%
-  display: inline-block
-  color: $color-black
-  text-align: center
-  border: none
-  text-transform: uppercase
-  letter-spacing: 1px
-  padding: .5em 1em
+  padding: .2rem 1rem
   cursor: pointer
-  transition: all .15s
-  max-width: 100%
-  text-decoration: none
+  transition: all 300ms
 
-  &.btn-large
-    padding: .85rem 1rem
 
-  &.btn-black
-    color: $color-white
-    background-color: $color-black
+  &.btn-primary
+    background-color: $color-primary-blue
+    color: white
 
-  &.btn-black:hover
-    color: $color-black
-    background-color: $color-white
-    outline: 2px solid $color-black
-    outline-offset: -2px
-
-  &.btn-white
-    color: $color-black
-    background-color: $color-white
-    border: 2px solid $color-black
-  
-  &.btn-white:hover
-    color: $color-white
-    background-color: $color-black
-
-  &:focus
-    outline: none
-
-  &:hover
-    background-color: $color-black
+    &:hover
+      background-color: $color-primary-blue-hover
+      
 
   @media(min-width: $sm-grid)
     width: auto

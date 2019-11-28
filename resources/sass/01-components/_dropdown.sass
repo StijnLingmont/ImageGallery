@@ -2,34 +2,34 @@
     user-select: none
     @media(min-width: $md-grid)
         position: relative
-    
+
     .dropdown-toggle
         cursor: pointer
         transition: all 100ms linear
-        
+
         #menu-icon_mobile
             display: block
             @media(min-width: $md-grid)
                 display: none
-        
+
         #menu-icon_pc
             display: none
             justify-content: space-between
             align-items: center
             &:hover
                 opacity: .8
-                
+
             i
                 color: white
-                
+
             @media(min-width: $md-grid)
                 display: flex
-            
+
         &.is-active
             #menu-icon_pc
                 i
                     transform: rotate(180deg)
-        
+
         #nav-avatar
             background-image: url("/assets/img/default-avatar-white.svg")
             background-position: center
@@ -37,7 +37,7 @@
             height: 1.83333333rem
             width: 1.83333333rem
             margin-right: .3rem
-            
+
     .dropdown-menu
         background: $color-primary
         display: flex
@@ -60,7 +60,7 @@
             width: 12.2777778rem
             margin-top: 1rem
             padding: unset
-        
+
         &::after
             @media(min-width: $md-grid)
                 content: ""
@@ -73,7 +73,7 @@
                 border-right: .7rem solid transparent
                 border-bottom: .7rem solid $color-white
                 clear: both
-            
+
         .dropdown-item
             padding: 1rem 0
             transition: all 100ms linear
@@ -81,7 +81,7 @@
                 padding: 0
             &:hover
                 background-color: $color-white-hover
-                
+
             .dropdown-link
                 color: white
                 text-align: center

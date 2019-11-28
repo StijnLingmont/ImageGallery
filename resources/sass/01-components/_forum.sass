@@ -1,28 +1,56 @@
 .login
-    height: 100%
+    position: absolute
+    top: 5rem
+    height: calc(100% - 5rem)
+    min-height: 29.8888889rem
+    width: 100%
     display: flex
     justify-content: center
     align-items: center
+    color: $color-white
+    background-image: linear-gradient(rgba($color-primary, 0.4)), url("/assets/img/login-background.jpg")
+    +background-image-cover
+
+    #password-forgot
+        margin-top: 1.3rem
+        text-align: center
+        .forum-button
+            color: white
+            transition: all 200ms
+
+            &:hover
+                opacity: .9
     .container
         .forum
+            max-height: 100%
             margin: 0 auto
             width: 30rem
             max-width: 100%
-            padding: 2rem
-            background-color: blue
+            padding: 2rem 1.5rem
+            background-color: $color-primary
+            @media(min-width: $sm-grid)
+                padding: 2.5rem 2rem
 
             .forum-item
-                background-color: red
-                margin: 0 auto
+                margin: 0 auto 2rem auto
+                position: relative
 
                 .forum-input
                     width: 100%
                     border: none
                     font-size: 1.5rem
-                    height: 2rem
+                    height: 2.5rem
 
                 .forum-checkbox
                     height: 1rem
 
-                    &:checked
-                        background: light-green
+                .forum-submit
+                    display: block
+                    margin-top: .5rem
+                    @media(min-width: $xs-grid)
+                        margin-top: 0
+                        margin-left: auto
+                        position: absolute
+                        right: 0
+                        top: 50%
+                        transform: translateY(-50%)
