@@ -1,0 +1,49 @@
+.albums
+    .albums-head
+        .albums-head_title
+            +title-lg
+
+        .albums-head_navigation
+            display: flex
+            .btn
+                margin-left: auto
+        
+        
+    .albums-list
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+        .album-item
+            margin: 1rem .5rem
+            
+            &:hover
+                .album-image
+                    .album-image_inner
+                        transform: scale(1.1)
+                        
+                .album-title
+                    opacity: .5
+    
+            .album-image
+                background-color: $color-grey
+                width: 10rem
+                height: 10rem
+                transition: all 200ms
+                
+                .album-image_inner
+                    height: 100%
+                    width: 100%
+                    +background-image-cover()
+                    position: relative
+                    transition: all 200ms
+                    &::after
+                        content: ""
+                        position: absolute
+                        width: 50%
+                        height: 100%
+                        background-image: url("assets//img/picture.svg")
+                        background-size: contain
+                        background-repeat: no-repeat
+                        background-position: center
+                        left: 50%
+                        transform: translateX(-50%)

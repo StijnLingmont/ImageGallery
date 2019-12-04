@@ -1,0 +1,28 @@
+.popup
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 9999
+    height: 100%
+    width: 100%
+    background-color: rgba($color-black, .5)
+    display: flex
+    
+    .popup-hide
+        position: absolute
+        height: 100%
+        width: 100%
+    
+    .popup-content
+        padding: 1rem
+        max-height: 90%
+        overflow: auto
+        background-color: $color-primary
+        width: 50%
+        position: absolute
+        top: 10%
+        left: 50%
+        transform: translate(-50%, 0)
+        z-index: 1

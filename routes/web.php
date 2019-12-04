@@ -19,7 +19,7 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
 //Albums
 Route::get('/albums', 'AlbumsController@index')->name('album.index');
-Route::get('/albums/add', 'AlbumsController@create')->name('album.create');
+//Route::get('/albums/add', 'AlbumsController@create')->name('album.create');
 Route::post('/albums', 'AlbumsController@store')->name('album.store');
 Route::get('/albums/{album}', 'AlbumsController@show')->name('album.show');
 Route::get('/albums/{album}/edit', 'AlbumsController@edit')->name('album.edit');
