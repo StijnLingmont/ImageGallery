@@ -18,10 +18,13 @@
                         <button ref="submitButton" type="submit" style="display: none"></button>
                     </form>
                 </div>
-
-                <p id="progress">{{ progressUpload }}%</p>
+                <div class="add-to-album">
+                    <button class="btn btn-primary"><i class="fas fa-folder-plus"></i> Voeg toe</button>
+                </div>
             </div>
         </section>
+
+        <progress-bar :is-active="progressBar" :progress="progressUpload"></progress-bar>
     </popup>
 </template>
 
@@ -32,6 +35,7 @@
             return {
                 progressUpload: 0,
                 images: {},
+                progressBar: false,
             }
         },
 
@@ -43,7 +47,18 @@
             uploadImages() {
                 this.progressUpload = 0;
 
-                let config = {
+                let config = this.storeConfig();
+
+                let files = document.getElementById('image');
+
+                let data = new FormData();
+                data.append('image', files.files[0]);
+
+                this.store(data, config)
+            },
+
+            storeConfig() {
+                return {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     },
@@ -57,28 +72,21 @@
                         this.progressUpload = progress;
                         console.log(progress);
                     }
-                };
-
-                let files = document.getElementById('image');
-
-                let data = new FormData();
-                data.append('image', files.files[0]);
-
-                let methods = {
-
-                };
-
-                this.store(data, config)
+                }
             },
 
             store(data, config) {
+                this.progressBar = true;
+
                 Axios.post( '/image', data, config)
                     .then((response) => {
                         console.log(response.data);
                         this.get();
+                        this.progressBar = false;
                     })
                     .catch((error) => {
                         this.error(error);
+                        this.progressBar = false;
                     });
             },
 
