@@ -16,7 +16,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
 //Albums
-Route::post('/image', 'ImageController@store')->name('album.index');
+Route::post('/image', 'ImageController@store')->name('image.store');
+Route::post('/image/all', 'ImageController@index')->name('image.index');
 
 //Albums
 Route::get('/albums', 'AlbumsController@index')->name('album.index');

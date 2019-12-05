@@ -1,41 +1,104 @@
 <template>
     <popup>
-        <div class="image-uploader">
-            <div class="image-uploader_body"></div>
-            <div class="image-uploader_footer">
-                <div class="inputWrapper">
-                    <form @change="uploadImages" type="post" id="image-form">
-                        <input type="file" name="image" id="image" class="image-uploader" multiple />
-                        <label for="image"><strong><i class="fas fa-file-upload"></i> Choose a file</strong></label>
-                    </form>
+        <section id="image-uploader">
+            <div class="image-uploader_body">
+                <div class="image-uploader_body-item" v-for="image in images">
+                    <div class="body-item_image" :style="{ backgroundImage: 'url(/storage/' + image.image + ')' }" ></div>
                 </div>
             </div>
-        </div>
+
+            <div class="is-line"></div>
+
+            <div class="image-uploader_footer">
+                <div class="inputWrapper">
+                    <form @change="submitForm" @submit.prevent="uploadImages()" type="post" id="image-form" enctype="multipart/form-data">
+                        <input type="file" name="image" id="image" class="image-uploader" multiple />
+                        <label for="image"><strong><i class="fas fa-file-upload"></i> Choose a file</strong></label>
+
+                        <button ref="submitButton" type="submit" style="display: none"></button>
+                    </form>
+                </div>
+
+                <p id="progress">{{ progressUpload }}%</p>
+            </div>
+        </section>
     </popup>
 </template>
 
 <script>
     import Axios from 'axios';
     export default {
+        data() {
+            return {
+                progressUpload: 0,
+                images: {},
+            }
+        },
+
         methods: {
-            uploadImages(event) {
+            submitForm() {
+                this.$refs.submitButton.click();
+            },
+
+            uploadImages() {
+                this.progressUpload = 0;
+
                 let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+
                     onUploadProgress: (progressEvent) => {
-                        console.log(progressEvent);
+                        let total = progressEvent.total;
+                        let loaded = progressEvent.loaded;
+
+                        let progress = Math.round(100 / total * loaded);
+
+                        this.progressUpload = progress;
+                        console.log(progress);
                     }
                 };
 
-                let data = document.getElementById('image').files;
-                console.log(data);
+                let files = document.getElementById('image');
 
-                Axios.post('/image', data, config)
-                    .then(function (response) {
-                        console.log(response);
+                let data = new FormData();
+                data.append('image', files.files[0]);
+
+                let methods = {
+
+                };
+
+                this.store(data, config)
+            },
+
+            store(data, config) {
+                Axios.post( '/image', data, config)
+                    .then((response) => {
+                        console.log(response.data);
+                        this.get();
                     })
-                    .catch(function (error) {
-                        console.log(error);
+                    .catch((error) => {
+                        this.error(error);
                     });
-            }
+            },
+
+            get() {
+                Axios.post( '/image/all')
+                    .then((response) => {
+                        this.images =  response.data.images;
+                    })
+                    .catch((error) => {
+                        this.error(error);
+                    });
+            },
+
+            error(error) {
+                alert(error);
+            },
+        },
+
+        created() {
+            this.get();
         }
     }
 </script>

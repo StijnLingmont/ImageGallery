@@ -17,7 +17,7 @@ class CreateAlbumsTable extends Migration
             $table->bigIncrements('albumId');
             $table->bigInteger('userId');
             $table->string('title');
-            $table->boolean('privacyStatus');
+            $table->boolean('privacyStatus')->nullable();
             $table->timestamps();
         });
     }
