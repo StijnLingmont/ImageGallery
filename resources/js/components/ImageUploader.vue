@@ -52,7 +52,9 @@
                 let files = document.getElementById('image');
 
                 let data = new FormData();
-                data.append('image', files.files[0]);
+                for(let i = 0; i < files.files.length; i++) {
+                    data.append('image' + i, files.files[i]);
+                }
 
                 this.store(data, config)
             },

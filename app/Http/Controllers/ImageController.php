@@ -9,14 +9,13 @@ use Illuminate\Http\Request;
 class ImageController extends Controller
 {
     public function store(Request $request) {
-        $result = $request->validate([
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif']
-        ]);
+        foreach($request->all() as $file){
+            $result = [];
+            $result['userId'] = auth()->user()->userId;
+            $result['image'] = $file->store('/uploaded', 'public');
 
-        $result['userId'] = auth()->user()->userId;
-        $result['image'] = $request->file('image')->store('/uploaded', 'public');
-
-        Image::create($result);
+            Image::create($result);
+        }
 
         return response()->json(['success'=>true]);
     }
