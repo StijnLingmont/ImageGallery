@@ -102,6 +102,7 @@
                     })
                     .catch((error) => {
                         this.error(error);
+                        this.get();
                         this.progressBar = false;
                         return false;
                     });
@@ -118,9 +119,7 @@
             },
 
             error(error) {
-                this.get();
                 console.log(error);
-                alert('Error: am image you uploaded is to large. Please use les bigger images.');
             },
         },
 

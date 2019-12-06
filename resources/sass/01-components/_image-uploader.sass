@@ -1,15 +1,27 @@
 #image-uploader
     .image-uploader_body
-        display: flex
-        flex-wrap: wrap
-        justify-content: center
+        // display: flex
+        // flex-wrap: wrap
+        // justify-content: center
         .image-uploader_body-item
+            display: inline-block
             margin: .5rem .2rem
+            width: calc(100% - .4rem)
+            cursor: pointer
+            @media(min-width: $xs-grid)
+                width: calc(50% - .4rem)
+
+            @media(min-width: $sm-grid)
+                width: calc(25% - .4rem)
+
+            @media(min-width: $md-grid)
+                width: calc(12.5% - .4rem)
+
             .body-item_image
+                height: 100%
+                width: 100%
+                padding-top: 75%
                 +background-image-cover()
-                width: 7rem
-                height: 7rem
-                cursor: pointer
         
     .image-uploader_footer
         display: flex

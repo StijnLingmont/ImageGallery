@@ -17,15 +17,16 @@
     
     .popup-content
         padding: 1rem
-        max-height: 90%
+        max-height: calc(98% - 3.5rem)
         overflow: auto
         background-color: $color-primary
         width: 80%
         position: absolute
-        top: 10%
+        top: 3.5rem
         left: 50%
         transform: translate(-50%, 0)
         z-index: 1
         
         @media(min-width: $md-grid)
-            width: 60%
+            width: 71.1111111rem
+            max-width: 95%
