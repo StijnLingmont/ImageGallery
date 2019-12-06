@@ -11,7 +11,7 @@
 
             <div class="image-uploader_footer">
                 <div class="inputWrapper">
-                    <form @change="submitForm" @submit.prevent="uploadImages()" type="post" id="image-form" enctype="multipart/form-data">
+                    <form @change="submitForm" @submit.prevent="uploadImages(0)" type="post" id="image-form" enctype="multipart/form-data">
                         <input type="file" name="image" id="image" class="image-uploader" multiple />
                         <label for="image"><strong><i class="fas fa-file-upload"></i> Choose a file</strong></label>
 
@@ -30,6 +30,7 @@
 
 <script>
     import Axios from 'axios';
+
     export default {
         data() {
             return {
@@ -44,19 +45,24 @@
                 this.$refs.submitButton.click();
             },
 
-            uploadImages() {
+            uploadImages(uploadedFiles) {
+                let files = document.getElementById('image');
+                let config = this.storeConfig();
+                let maxFiles = files.files.length;
+                let filesARequest = 4;
+
                 this.progressUpload = 0;
 
-                let config = this.storeConfig();
-
-                let files = document.getElementById('image');
-
                 let data = new FormData();
-                for(let i = 0; i < files.files.length; i++) {
-                    data.append('image' + i, files.files[i]);
+
+                for(let i = uploadedFiles; i < uploadedFiles + filesARequest; i++) {
+                    if(files.files[i] !== undefined) {
+                        console.log(i);
+                        data.append('image' + i, files.files[i]);
+                    }
                 }
 
-                this.store(data, config)
+                this.store(data, config, maxFiles, uploadedFiles);
             },
 
             storeConfig() {
@@ -77,18 +83,27 @@
                 }
             },
 
-            store(data, config) {
+            store(data, config, maxFiles, currentFilesUploaded) {
                 this.progressBar = true;
-
                 Axios.post( '/image', data, config)
                     .then((response) => {
                         console.log(response.data);
-                        this.get();
-                        this.progressBar = false;
+                        let amountAfterUploading = currentFilesUploaded + response.data.amount;
+                        if(amountAfterUploading < maxFiles) {
+                            //Do another round
+                            this.uploadImages(amountAfterUploading);
+                            this.get();
+                        } else {
+                            //Upload is finished
+                            this.get();
+                            this.progressBar = false;
+                            return true;
+                        }
                     })
                     .catch((error) => {
                         this.error(error);
                         this.progressBar = false;
+                        return false;
                     });
             },
 
@@ -103,7 +118,9 @@
             },
 
             error(error) {
-                alert(error);
+                this.get();
+                console.log(error);
+                alert('Error: am image you uploaded is to large. Please use les bigger images.');
             },
         },
 
