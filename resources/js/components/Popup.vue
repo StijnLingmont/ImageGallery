@@ -28,6 +28,10 @@
                 this.show();
             });
 
+            this.$root.$on('closePopUp', () => {
+                this.hide();
+            });
+
             if(document.getElementsByClassName('text-error').length) {
                 this.show()
             }

@@ -15,8 +15,12 @@
             </div>
 
             <div class="is-line"></div>
+
+            <div class="album-body">
+                <album :album-id="{{ $album->albumId }}"></album>
+            </div>
         </div>
     </section>
 
-    <image-uploader></image-uploader>
+    <image-uploader :album-id="{{ $album->albumId }}"></image-uploader>
 @endsection

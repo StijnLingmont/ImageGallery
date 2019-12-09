@@ -7,13 +7,17 @@ import Navigation from "./components/Navigation";
 import Dropdown from "./components/Dropdown";
 import Popup from "./components/Popup";
 import ImageUploader from './components/ImageUploader';
-import ProgressBar from './components/ProgressBar'
+import ProgressBar from './components/ProgressBar';
+import Image from './components/Image Uploader/Image';
+import Album from './components/Album';
 
 Vue.component('navigation', Navigation);
 Vue.component('dropdown', Dropdown);
 Vue.component('popup', Popup);
 Vue.component('image-uploader', ImageUploader);
 Vue.component('progress-bar', ProgressBar);
+Vue.component('uploaded-image', Image);
+Vue.component('album', Album);
 
 const app = new Vue({
     el: '#page',
@@ -25,4 +29,10 @@ const app = new Vue({
             this.$emit('showPopUp');
         }
     },
+    created() {
+        this.$on('picturesAddToAlbum', () => {
+            this.$emit('getPictures');
+            this.$emit('closePopUp');
+        });
+    }
 });

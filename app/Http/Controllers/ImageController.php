@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Album;
 use App\Picture;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class ImageController extends Controller
             $image = Image::make($file->getRealPath());
             $image->resize(800, 800, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('storage/' . $result['image'] ), 20);
+            })->save(public_path('storage/' . $result['image'] ));
 
             Picture::create($result);
             $round++;
@@ -38,5 +39,26 @@ class ImageController extends Controller
         $images = Picture::where('userId', auth()->user()->userId)->get();
 
         return response()->json(['images'=>$images]);
+    }
+
+    public function link(Request $request, Album $album) {
+        $imageList = $request->validate([
+            '*' => 'integer'
+        ]);
+
+        foreach($imageList as $image) {
+//            $storeInfo = [
+//                'imageId' => $image,
+//                'albumId' => $album->albumId,
+//            ];
+//
+//            if(SelectedImage::isAlbumFromUser($album) || SelectedImage::isImageFromUser($storeInfo['imageId'])) {
+//                SelectedImage::create($storeInfo);
+//            } else {
+//                return response()->json(['error'=>'Sorry something went wrong. Please try again!']);
+//            }
+        }
+
+        return response()->json(['status'=>'Stored']);
     }
 }

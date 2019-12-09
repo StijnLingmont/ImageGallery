@@ -2,9 +2,9 @@
     <popup>
         <section id="image-uploader">
             <div class="image-uploader_body">
-                <div class="image-uploader_body-item" v-for="image in images">
+                <uploaded-image v-for="image in images" :image="image" v-bind:key="image.imageId" @imageSelected="imageSelected($event)" @imageDeselected="imageDeselected($event)">
                     <div class="body-item_image" :style="{ backgroundImage: 'url(/storage/' + image.image + ')' }" ></div>
-                </div>
+                </uploaded-image>
             </div>
 
             <div class="is-line"></div>
@@ -19,7 +19,7 @@
                     </form>
                 </div>
                 <div class="add-to-album">
-                    <button class="btn btn-primary"><i class="fas fa-folder-plus"></i> Voeg toe</button>
+                    <button class="btn btn-primary" @click="addToAlbum"><i class="fas fa-folder-plus"></i> Voeg toe</button>
                 </div>
             </div>
         </section>
@@ -32,11 +32,16 @@
     import Axios from 'axios';
 
     export default {
+        props: {
+            albumId: {type: Number, default: 0},
+        },
+
         data() {
             return {
                 progressUpload: 0,
                 images: {},
                 progressBar: false,
+                selectedImages: [],
             }
         },
 
@@ -50,6 +55,7 @@
                 let config = this.storeConfig();
                 let maxFiles = files.files.length;
                 let filesARequest = 4;
+                let uploadStatus = true;
 
                 this.progressUpload = 0;
 
@@ -57,12 +63,17 @@
 
                 for(let i = uploadedFiles; i < uploadedFiles + filesARequest; i++) {
                     if(files.files[i] !== undefined) {
-                        console.log(i);
-                        data.append('image' + i, files.files[i]);
+                        if(files.files[i].size < 5000000) {
+                            data.append('image' + i, files.files[i]);
+                        } else {
+                            uploadStatus = false;
+                            this.error(files.files[i].name + 'is to large to upload. Please upload a picture under 5mb');
+                        }
                     }
                 }
-
-                this.store(data, config, maxFiles, uploadedFiles);
+                if(uploadStatus) {
+                    this.store(data, config, maxFiles, uploadedFiles);
+                }
             },
 
             storeConfig() {
@@ -91,12 +102,14 @@
                         let amountAfterUploading = currentFilesUploaded + response.data.amount;
                         if(amountAfterUploading < maxFiles) {
                             //Do another round
+                            this.progressUpload = 0;
                             this.uploadImages(amountAfterUploading);
                             this.get();
                         } else {
-                            //Upload is finished
+                             //Upload is finished
                             this.get();
                             this.progressBar = false;
+                            this.progressUpload = 0;
                             return true;
                         }
                     })
@@ -111,7 +124,7 @@
             get() {
                 Axios.post( '/image/all')
                     .then((response) => {
-                        this.images =  response.data.images;
+                        this.images = response.data.images;
                     })
                     .catch((error) => {
                         this.error(error);
@@ -119,8 +132,37 @@
             },
 
             error(error) {
+                alert(error);
                 console.log(error);
             },
+
+            imageSelected(image) {
+                let imageList = this.selectedImages;
+                if(!imageList.includes(image)) {
+                    imageList.push(image);
+                    this.selectedImages = imageList;
+                }
+            },
+
+            imageDeselected(image) {
+                let imageList = this.selectedImages;
+                let index = imageList.indexOf(image);
+                if(imageList.includes(image)) {
+                    imageList.splice(index, 1);
+                    this.selectedImages = imageList;
+                }
+            },
+
+            addToAlbum() {
+                Axios.post( '/albums/' + this.albumId +  '/image/add', this.selectedImages)
+                    .then((response) => {
+                        console.log(response.data);
+                        this.$root.$emit('picturesAddToAlbum');
+                    })
+                    .catch((error) => {
+                        this.error(error);
+                    });
+            }
         },
 
         created() {
