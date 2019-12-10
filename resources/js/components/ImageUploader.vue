@@ -63,7 +63,7 @@
 
                 for(let i = uploadedFiles; i < uploadedFiles + filesARequest; i++) {
                     if(files.files[i] !== undefined) {
-                        if(files.files[i].size < 5000000) {
+                        if(files.files[i].size < 10000000) {
                             data.append('image' + i, files.files[i]);
                         } else {
                             uploadStatus = false;

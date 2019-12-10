@@ -9,6 +9,10 @@
 
 <script>
     export default {
+        props: {
+            customInclude: {type: String, default: ''},
+        },
+
         data() {
             return {
                 isVisible: false,

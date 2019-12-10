@@ -1,6 +1,5 @@
 import Vue from 'vue';
-import Axios from 'axios';
-import VueRouter from "vue-router";
+import ScrollMagic from 'scrollmagic';
 
 //Components
 import Navigation from "./components/Navigation";
@@ -9,7 +8,8 @@ import Popup from "./components/Popup";
 import ImageUploader from './components/ImageUploader';
 import ProgressBar from './components/ProgressBar';
 import Image from './components/Image Uploader/Image';
-import Album from './components/Album';
+import Album from './components/Albums/Album';
+import AlbumForm from './components/Albums/AlbumForm';
 
 Vue.component('navigation', Navigation);
 Vue.component('dropdown', Dropdown);
@@ -18,6 +18,10 @@ Vue.component('image-uploader', ImageUploader);
 Vue.component('progress-bar', ProgressBar);
 Vue.component('uploaded-image', Image);
 Vue.component('album', Album);
+Vue.component('album-form', AlbumForm);
+
+let controller = new ScrollMagic.Controller();
+let fadeIn = document.getElementsByClassName('is-fade-in');
 
 const app = new Vue({
     el: '#page',
@@ -27,12 +31,29 @@ const app = new Vue({
     methods: {
         showPopUp() {
             this.$emit('showPopUp');
+        },
+
+        editForm(data) {
+            this.$emit('isEdit', data);
+            this.showPopUp();
         }
     },
     created() {
         this.$on('picturesAddToAlbum', () => {
             this.$emit('getPictures');
             this.$emit('closePopUp');
+            this.$emit('deselectPicture');
         });
     }
 });
+
+for(var i = 0; i < fadeIn.length; i++)
+{
+    let element = new ScrollMagic.Scene({
+        triggerElement: fadeIn[i],
+        reverse: false,
+        triggerHook: 1
+    })
+        .setClassToggle(fadeIn[i], 'show')
+        .addTo(controller);
+}

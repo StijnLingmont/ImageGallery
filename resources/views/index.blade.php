@@ -11,4 +11,11 @@
             </h1>
         </div>
     </section>
+    <section class="image-list">
+        <div class="image-list_body album-list container">
+            @foreach($pictures as $picture)
+                <img class="is-fade-in" src="/storage/{{ $picture->image }}">
+            @endforeach
+        </div>
+    </section>
 @endsection

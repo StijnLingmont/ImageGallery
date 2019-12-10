@@ -14,8 +14,8 @@ class CreatePicturesTable extends Migration
     public function up()
     {
         Schema::create('pictures', function (Blueprint $table) {
-            $table->bigIncrements('imageId');
-            $table->bigInteger('userId');
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('image');

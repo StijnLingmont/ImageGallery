@@ -17,10 +17,10 @@
             <div class="is-line"></div>
 
             <div class="album-body">
-                <album :album-id="{{ $album->albumId }}"></album>
+                <album :album-id="{{ $album->id }}"></album>
             </div>
         </div>
     </section>
 
-    <image-uploader :album-id="{{ $album->albumId }}"></image-uploader>
+    <image-uploader :album-id="{{ $album->id }}" v-cloak></image-uploader>
 @endsection

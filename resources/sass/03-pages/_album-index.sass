@@ -15,8 +15,37 @@
         justify-content: center
         .album-item
             margin: 1rem .5rem
+            position: relative
+    
+            .btn
+                position: absolute
+                top: 0
+                opacity: .0
+                border-radius: 0
+                z-index: 50
+    
+            .edit-album
+                left: 0
+    
+            .remove-album
+                right: 0
+            
+            .manage-button
+                opacity: 0
+                transition: all 200ms
+                
+            .album-title
+                display: inline-block
+                .edit-input
+                    display: inline-block
             
             &:hover
+                .btn
+                    opacity: 1
+                
+                .manage-button
+                    opacity: 1
+                
                 .album-image
                     .album-image_inner
                         transform: scale(1.1)

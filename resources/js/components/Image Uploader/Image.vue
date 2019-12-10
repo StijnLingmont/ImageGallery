@@ -23,12 +23,19 @@
 
             selected() {
                 if(this.isClicked) {
-                    this.$emit('imageSelected', this.image.imageId)
+                    this.$emit('imageSelected', this.image.id)
                 } else {
-                    this.$emit('imageDeselected', this.image.imageId)
+                    this.$emit('imageDeselected', this.image.id)
                 }
             }
+        },
 
+        created() {
+            this.$root.$on('deselectPicture', () => {
+                if(this.isClicked) {
+                    this.clickToggle();
+                }
+            });
         }
     }
 </script>

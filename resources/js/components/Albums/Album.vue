@@ -1,6 +1,6 @@
 <template>
-    <div class="album">
-        <img>
+    <div class="album-list">
+        <img v-for="image in images" v-bind:src="'/storage/' + image.image" alt="" />
     </div>
 </template>
 
@@ -21,7 +21,7 @@
             getPictures() {
                 Axios.post('/albums/' + this.albumId + '/image')
                     .then((response) => {
-                        console.log(response.data);
+                        this.images = response.data;
                     })
                     .catch((error) => {
                         alert(error);

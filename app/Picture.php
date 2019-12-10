@@ -8,11 +8,9 @@ class Picture extends Model
 {
     protected $guarded = [];
 
-    protected $primaryKey = 'imageId';
-
     public static function isImageFromUser($pictureId) {
-        return Picture::where('imageId', '=', $pictureId)
-            ->where('userId', '=', auth()->user()->userId)
+        return Picture::where('id', '=', $pictureId)
+            ->where('user_id', '=', auth()->user()->id)
             ->get();
     }
 }
