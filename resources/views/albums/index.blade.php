@@ -52,24 +52,24 @@
                     <input v-if="albumId" type="hidden" name="_method" value="patch">
                     @csrf
                     <div class="forum-item">
-                        <label for="title">Title</label>
-                        <input class="forum-input @error('name') forum-invalid @enderror" id="title" type="text" name="title" value="{{ old('title') }}" v-model="title" required autocomplete="title" autofocus>
+                        <label for="title">Title (Max 18 characters)</label>
+                        <input class="forum-input @error('title') forum-invalid @enderror" id="title" maxlength="18" type="text" name="title" value="{{ old('title') }}" v-model="title" required autocomplete="title" autofocus>
 
-                        @error('name')
+                        @error('title')
                         <span class="text-error">
-                    <strong>{{ $message }}</strong>
-                </span>
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
 
                     <div class="forum-item">
                         <label class="switch">
-                            <input name="privacyStatus" class="@error('name') forum-invalid @enderror" id="privacyStatus" type="checkbox" value="1" v-model="privacyStatus" autocomplete="title" autofocus>
+                            <input name="privacyStatus" class="@error('privacyStatus') forum-invalid @enderror" id="privacyStatus" type="checkbox" value="1" v-model="privacyStatus" autocomplete="title" autofocus>
                             <span class="slider round"></span>
                         </label>
                         <label for="privacyStatus">Private</label>
 
-                        @error('name')
+                        @error('privacyStatus')
                         <span class="text-error">
                             <strong>{{ $message }}</strong>
                         </span>

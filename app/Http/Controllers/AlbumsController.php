@@ -24,7 +24,7 @@ class AlbumsController extends Controller
 
     public function store(Request $request) {
         $result = $request->validate([
-            'title' => ['required', 'max:100'],
+            'title' => ['required', 'max:18'],
             'privacyStatus' => [],
         ]);
 
@@ -37,7 +37,7 @@ class AlbumsController extends Controller
 
     public function update(Request $request, Album $album) {
         $result = $request->validate([
-            'title' => ['required', 'max:100'],
+            'title' => ['required', 'max:18'],
             'privacyStatus' => [],
         ]);
 
