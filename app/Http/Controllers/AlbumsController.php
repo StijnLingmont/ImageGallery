@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AlbumsController extends Controller
 {
     public function index() {
-        $albums = Album::all();
+        $albums = Album::with('picture')->get();
 
         return view('albums.index', [
             'albums' => $albums
@@ -59,13 +59,13 @@ class AlbumsController extends Controller
 
         foreach($imageList as $image) {
             $album->save();
-            $album->pictures()->attach($image);
+            $album->picture()->attach($image);
         }
 
         return response()->json(['status'=>'Stored']);
     }
 
     public function getImages(Album $album) {
-        return $album->pictures()->get();
+        return $album->picture()->get();
     }
 }

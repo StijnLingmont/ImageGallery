@@ -28,7 +28,7 @@
 
                         <a href="{{ route('album.show', [$album->id]) }}">
                             <div class="album-image">
-                                <div class="album-image_inner" @if($album->id) style="background-image: url('{{ $album->imageId }}')" @endif></div>
+                                <div class="album-image_inner @if(!$album->picture->count()) default-image @endif" @if($album->picture->count()) style="background-image: url('/storage/{{ $album->picture->first()->image }}')" @endif></div>
                             </div>
                             <p class="album-title">
                                 <span>{{ $album->title }}</span>

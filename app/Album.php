@@ -14,7 +14,7 @@ class Album extends Model
             ->count();
     }
 
-    public function pictures() {
+    public function picture() {
         return $this->belongsToMany(Picture::class, 'albums_pictures');
     }
 }
