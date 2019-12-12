@@ -20,19 +20,17 @@
             .btn
                 position: absolute
                 top: 0
-                opacity: .0
+                opacity: 1
                 border-radius: 0
                 z-index: 50
+                @media(min-width: $md-grid)
+                    opacity: 0
     
             .edit-album
                 left: 0
     
             .remove-album
                 right: 0
-            
-            .manage-button
-                opacity: 0
-                transition: all 200ms
                 
             .album-title
                 display: inline-block
