@@ -19,13 +19,17 @@
         transition: all 500ms
         div
             width: 100%
-            display: flex
-            justify-content: center
-            align-items: center
+            height: 100vh
+            position: relative
             .slide-item
+                position: relative
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
                 max-width: 90%
                 max-height: calc(100vh - 4rem)
                 float: left
+                z-index: 99
                 
     #fullscreen-dashboard
         color: $color-grey
