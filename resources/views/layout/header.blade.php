@@ -2,7 +2,7 @@
     <header id="header" :class="{ 'is-transparent': headerColor }">
         <div class="container grid">
             <div id="logo">
-                <img id="logo-item" src="{{ asset('assets/img/logo.png') }}" alt="">
+                <a href="{{ route('home') }}"><img id="logo-item" src="{{ asset('assets/img/logo.png') }}" alt="Image Gallery Logo"></a>
             </div>
 
             <div id="header-menu">
