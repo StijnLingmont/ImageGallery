@@ -39,4 +39,10 @@ class PictureController extends Controller
 
         return response()->json(['images'=>$images]);
     }
+
+    public function destroy(Picture $picture) {
+        $picture->delete();
+
+        return response()->json(['status'=>'success']);
+    }
 }

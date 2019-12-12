@@ -3,6 +3,9 @@
         <section id="image-uploader">
             <div class="image-uploader_body">
                 <uploaded-image v-for="image in images" :image="image" v-bind:key="image.imageId" @imageSelected="imageSelected($event)" @imageDeselected="imageDeselected($event)">
+                    <form @change="submitForm" @submit.prevent="remove(image.id)" method="post">
+                        <button type="submit" class="remove-picture btn btn-small btn-delete"><i class="fas fa-times"></i></button>
+                    </form>
                     <div class="body-item_image" :style="{ backgroundImage: 'url(/storage/' + image.image + ')' }" ></div>
                 </uploaded-image>
             </div>
@@ -131,11 +134,6 @@
                     });
             },
 
-            error(error) {
-                alert(error);
-                console.log(error);
-            },
-
             imageSelected(image) {
                 let imageList = this.selectedImages;
                 if(!imageList.includes(image)) {
@@ -157,12 +155,31 @@
                 Axios.post( '/albums/' + this.albumId +  '/image/add', this.selectedImages)
                     .then((response) => {
                         console.log(response.data);
-                        this.$root.$emit('picturesAddToAlbum');
+                        this.$root.$emit('changeAlbum', true);
                     })
                     .catch((error) => {
                         this.error(error);
                     });
-            }
+            },
+
+            remove(image) {
+                Axios.delete( '/image/' + image)
+                    .then((response) => {
+                        this.$root.$emit('changeAlbum', false);
+                        this.get();
+                        return true;
+                    })
+                    .catch((error) => {
+                        this.error(error);
+                        this.get();
+                        return false;
+                    });
+            },
+
+            error(error) {
+                alert(error);
+                console.log(error);
+            },
         },
 
         created() {

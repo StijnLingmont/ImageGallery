@@ -39,10 +39,12 @@ const app = new Vue({
         }
     },
     created() {
-        this.$on('picturesAddToAlbum', () => {
+        this.$on('changeAlbum', (closePopup) => {
             this.$emit('getPictures');
-            this.$emit('closePopUp');
             this.$emit('deselectPicture');
+            if(closePopup) {
+                this.$emit('closePopUp');
+            }
         });
     }
 });

@@ -1,13 +1,11 @@
 #image-uploader
     .image-uploader_body
-        // display: flex
-        // flex-wrap: wrap
-        // justify-content: center
         .image-uploader_body-item
             display: inline-block
             margin: .5rem .2rem
             width: calc(100% - .4rem)
             cursor: pointer
+            position: relative
             @media(min-width: $xs-grid)
                 width: calc(50% - .4rem)
 
@@ -23,6 +21,25 @@
                 padding-top: 75%
                 +background-image-cover()
                 margin: 1px
+                position: relative
+                z-index: 1
+                
+            .remove-picture
+                position: absolute
+                top: 1px
+                right: 1px
+                z-index: 60
+                opacity: 1
+                transition: all 200ms
+                border-radius: 0
+                @media(min-width: $md-grid)
+                    opacity: 0
+                
+            &:hover
+                background-color: $color-primary-blue
+                
+                .remove-picture
+                    opacity: 1
         
     .image-uploader_footer
         display: flex
