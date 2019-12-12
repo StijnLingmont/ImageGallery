@@ -45,4 +45,21 @@ class PictureController extends Controller
 
         return response()->json(['status'=>'success']);
     }
+
+    public function show(Album $album, Picture $picture) {
+        $image = $album->picture()->find($picture['id']);
+
+        return response()->json(['images'=> $image]);
+    }
+
+    public function detailStore(Request $request, Album $album, Picture $picture) {
+        $validate = $request->validate([
+            'title' => '',
+            'description' => '',
+        ]);
+
+        $album->picture()->updateExistingPivot($picture['id'], $validate);
+
+        return response()->json(['status'=> 'success']);
+    }
 }

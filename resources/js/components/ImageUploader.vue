@@ -154,7 +154,6 @@
             addToAlbum() {
                 Axios.post( '/albums/' + this.albumId +  '/image/add', this.selectedImages)
                     .then((response) => {
-                        console.log(response.data);
                         this.$root.$emit('changeAlbum', true);
                     })
                     .catch((error) => {

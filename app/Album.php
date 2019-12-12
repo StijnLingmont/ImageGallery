@@ -15,6 +15,10 @@ class Album extends Model
     }
 
     public function picture() {
-        return $this->belongsToMany(Picture::class, 'albums_pictures');
+        return $this->belongsToMany(Picture::class, 'albums_pictures')->withPivot('title', 'description');
+    }
+
+    public function checkUser() {
+        return $this->where('user_id', '=', auth()->user()->id)->count();
     }
 }

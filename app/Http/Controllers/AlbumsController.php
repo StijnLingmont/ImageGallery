@@ -18,7 +18,7 @@ class AlbumsController extends Controller
 
     public function show(Album $album) {
         return view('albums.show', [
-            'album' => $album
+            'album' => $album,
         ]);
     }
 

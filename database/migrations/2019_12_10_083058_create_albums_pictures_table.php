@@ -17,6 +17,8 @@ class CreateAlbumsPicturesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('picture_id');
             $table->unsignedBigInteger('album_id');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
 
             $table->foreign('picture_id')->references('id')->on('pictures')->onDelete('cascade');;
             $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');;

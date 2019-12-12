@@ -1,6 +1,6 @@
 <template>
     <div class="album-list">
-        <img v-for="image in images" v-bind:src="'/storage/' + image.image" alt="" />
+        <img v-for="(image, key) in images" v-bind:src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" />
     </div>
 </template>
 
@@ -26,6 +26,14 @@
                     .catch((error) => {
                         alert(error);
                     });
+            },
+
+            fullScreen(clickedImage) {
+                let fullscreenData = {
+                    'clicked': clickedImage,
+                    'images': this.images,
+                };
+                this.$root.$emit('loadFullScreen', fullscreenData);
             }
         },
 

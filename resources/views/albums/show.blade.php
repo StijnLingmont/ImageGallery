@@ -23,4 +23,5 @@
     </section>
 
     <image-uploader :album-id="{{ $album->id }}" v-cloak></image-uploader>
+    <fullscreen-image :edit-info="{{ $album->checkUser() }}"></fullscreen-image>
 @endsection

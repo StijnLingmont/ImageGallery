@@ -1,0 +1,104 @@
+#fullscreen
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 9999
+    height: 100%
+    width: 100%
+    background-color: black
+    display: flex
+    overflow: hidden
+
+    #fullscreen-inner
+        position: relative
+        margin: 0
+        left: 0
+        display: -webkit-box
+        transition: all 500ms
+        div
+            width: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+            .slide-item
+                max-width: 90%
+                max-height: calc(100vh - 4rem)
+                float: left
+                
+    #fullscreen-dashboard
+        color: $color-grey
+        background-color: rgba($color-grey, 0.5)
+        height: 2rem
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        width: 100%
+        position: absolute
+        top: 0
+        padding: 0 1rem
+        z-index: 99
+        
+        .dashboard-item
+            font-size: 1rem
+            line-height: 1rem
+            cursor: pointer
+            transition: 200ms all
+            padding: .5rem
+    
+            &:hover
+                opacity: .7
+                
+    .dashboard-info
+        position: absolute
+        z-index: 9999
+        background-color: $color-white
+        right: .82rem
+        top: 2.5rem
+        padding: .4rem .8rem
+        max-width: 10rem
+        p
+            font-size: .8rem
+            line-height: 1rem
+            
+            .info-title
+                font-weight: bold
+                
+            .info-edit
+                max-width: 100%
+                width: 100%
+                min-width: 100%
+    
+        &::after
+            content: ""
+            position: absolute
+            top: -.7rem
+            right: 2.15rem
+            width: 0
+            height: 0
+            border-left: .7rem solid transparent
+            border-right: .7rem solid transparent
+            border-bottom: .7rem solid $color-white
+            clear: both
+
+    
+    .slider-nav
+        color: $color-grey
+        cursor: pointer
+        position: absolute
+        padding: .5rem .8rem
+        background-color: rgba($color-grey, 0.5)
+        top: 50%
+        transform: translateY(-50%)
+        font-size: 1.3rem
+        transition: all 200ms
+        
+        &:hover
+            opacity: .9
+        
+    #next-button
+        right: 0
+        
+    #prev-button
+        left: 0
