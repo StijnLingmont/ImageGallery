@@ -19,6 +19,6 @@ class Album extends Model
     }
 
     public function checkUser() {
-        return $this->where('user_id', '=', auth()->user()->id)->count();
+        return auth()->user() ? $this->where('user_id', '=', auth()->user()->id)->count() : 0;
     }
 }

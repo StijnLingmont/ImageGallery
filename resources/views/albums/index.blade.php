@@ -64,7 +64,7 @@
 
                     <div class="forum-item">
                         <label class="switch">
-                            <input name="privacyStatus" class="@error('privacyStatus') forum-invalid @enderror" id="privacyStatus" type="checkbox" value="1" v-model="privacyStatus" autocomplete="title" autofocus>
+                            <input name="privacyStatus" ref="checkbox" @change="status" class="@error('privacyStatus') forum-invalid @enderror" id="privacyStatus" value="1" type="checkbox" v-model="privacyStatus" autocomplete="title" autofocus>
                             <span class="slider round"></span>
                         </label>
                         <label for="privacyStatus">Private</label>

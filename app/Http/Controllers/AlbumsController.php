@@ -10,7 +10,7 @@ class AlbumsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('show', 'getImages');
     }
 
     public function index() {
@@ -23,7 +23,8 @@ class AlbumsController extends Controller
     }
 
     public function show(Album $album) {
-        if($album->privacyStatus && $album->user_id != auth()->user()->id) {
+        $isChecked = auth()->user() ? auth()->user()->id : false;
+        if($album->privacyStatus && ($album->user_id != $isChecked)) {
             return redirect(route('home'));
         }
 
@@ -50,6 +51,8 @@ class AlbumsController extends Controller
             'title' => ['required', 'max:18'],
             'privacyStatus' => [],
         ]);
+
+        $result['privacyStatus'] = isset($result['privacyStatus']) ? $result['privacyStatus'] : null;
 
         $album->update($result);
 
