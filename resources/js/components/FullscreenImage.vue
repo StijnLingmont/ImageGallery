@@ -22,7 +22,7 @@
             <span class="text-success" v-show="success">Saved!</span>
         </div>
 
-        <div id="fullscreen-inner" @click="alert()" :style="{ left: '-' + currentSlidePosition + '%' }">
+        <div id="fullscreen-inner" :style="{ left: '-' + currentSlidePosition + '%' }">
             <div v-for="image in images">
                 <img class="slide-item" v-bind:src="'/storage/' + image.image" />
             </div>
@@ -58,10 +58,6 @@
             show() {
                 this.isActive = true;
                 this.albumChange();
-            },
-
-            alert() {
-                alert('test');
             },
 
             hide() {

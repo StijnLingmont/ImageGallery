@@ -8,8 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AlbumsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() {
-        $albums = Album::with('picture')->get();
+        $albums = Album::where('user_id', '=', auth()->user()->id)
+            ->with('picture')->get();
 
         return view('albums.index', [
             'albums' => $albums
@@ -17,6 +23,10 @@ class AlbumsController extends Controller
     }
 
     public function show(Album $album) {
+        if($album->privacyStatus && $album->user_id != auth()->user()->id) {
+            return redirect(route('home'));
+        }
+
         return view('albums.show', [
             'album' => $album,
         ]);

@@ -19,6 +19,8 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::post('/image', 'PictureController@store')->name('image.store');
 Route::post('/image/all', 'PictureController@index')->name('image.index');
 Route::delete('/image/{picture}', 'PictureController@destroy')->name('image.destroy');
+Route::post('/albums/{album}/image', 'AlbumsController@getImages')->name('album.image.show');
+Route::post('/albums/{album}/image/add', 'AlbumsController@link')->name('album.image.store');
 Route::get('/albums/{album}/image/{picture}', 'PictureController@show')->name('image.show');
 Route::post('/albums/{album}/image/{picture}', 'PictureController@detailStore')->name('image.store');
 
@@ -28,9 +30,5 @@ Route::post('/albums', 'AlbumsController@store')->name('album.store');
 Route::get('/albums/{album}', 'AlbumsController@show')->name('album.show');
 Route::patch('/albums/{album}', 'AlbumsController@update')->name('album.update');
 Route::delete('/albums/{album}', 'AlbumsController@destroy')->name('album.destroy');
-
-//Selected Images
-Route::post('/albums/{album}/image', 'AlbumsController@getImages')->name('album.image.show');
-Route::post('/albums/{album}/image/add', 'AlbumsController@link')->name('album.image.store');
 
 Auth::routes();
