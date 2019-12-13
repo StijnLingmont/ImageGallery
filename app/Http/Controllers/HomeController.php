@@ -38,6 +38,7 @@ class HomeController extends Controller
     }
 
     public function dashboard() {
-        return view('dashboard');
+        //Need to change to dashboard view
+        return redirect('/albums');
     }
 }
