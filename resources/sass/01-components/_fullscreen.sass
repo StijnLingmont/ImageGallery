@@ -29,11 +29,11 @@
                 max-width: 90%
                 max-height: calc(100vh - 4rem)
                 float: left
-                z-index: 99
+                z-index: 1
                 
     #fullscreen-dashboard
         color: $color-grey
-        background-color: rgba($color-grey, 0.5)
+        background-color: rgba($color-black-light, 0.5)
         height: 2rem
         display: flex
         justify-content: flex-end
@@ -88,15 +88,16 @@
 
     
     .slider-nav
-        color: $color-grey
+        color: $color-white
         cursor: pointer
         position: absolute
         padding: .5rem .8rem
-        background-color: rgba($color-grey, 0.5)
+        background-color: rgba($color-black-light, 0.6)
         top: 50%
         transform: translateY(-50%)
         font-size: 1.3rem
         transition: all 200ms
+        z-index: 2
         
         &:hover
             opacity: .9
