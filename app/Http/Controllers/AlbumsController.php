@@ -23,13 +23,14 @@ class AlbumsController extends Controller
     }
 
     public function show(Album $album) {
-        $isChecked = auth()->user() ? auth()->user()->id : false;
-        if($album->privacyStatus && ($album->user_id != $isChecked)) {
+        $isChecked = $album->user_id == (auth()->user() ? auth()->user()->id : false);
+        if($album->privacyStatus && !$isChecked) {
             return redirect(route('home'));
         }
 
         return view('albums.show', [
             'album' => $album,
+            'ownsAlbum' => $isChecked,
         ]);
     }
 

@@ -9,9 +9,11 @@
         <div class="container">
             <div class="album-head">
                 <h1 class="album-head_title">{{ $album->title }}</h1>
-                <div class="album-head_navigation">
-                    <button @click="showPopUp" class="btn btn-primary">Voeg afbeelding toe</button>
-                </div>
+                @if($ownsAlbum)
+                    <div class="album-head_navigation">
+                        <button @click="showPopUp" class="btn btn-primary">Voeg afbeelding toe</button>
+                    </div>
+                @endif
             </div>
 
             <div class="is-line"></div>
