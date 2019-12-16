@@ -1,8 +1,6 @@
 @extends('layout.base')
 
-@section('title')
-    Albums
-@endsection
+@section('title', $album->title)
 
 @section('content')
     <section class="section album">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Album;
+use App\User;
 use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,22 @@ class HomeController extends Controller
     }
 
     public function dashboard() {
-        //Need to change to dashboard view
-        return redirect('/albums');
+        return view('dashboard', [
+            'user' => auth()->user(),
+        ]);
+    }
+
+    public function getProfilePicture() {
+        return response()->json(['profilePicture'=>auth()->user()->profile_picture]);
+    }
+
+    public function storeProfilePicture(Request $request) {
+        $validated = $request->validate([
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
+        ]);
+        $result = [];
+        $result['profile_picture'] = $request->file('image')->store('profile-picture', 'public');
+        User::where('id', '=', auth()->user()->id)->update($result);
+        return response()->json(['success'=>true]);
     }
 }

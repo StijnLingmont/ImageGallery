@@ -11,6 +11,7 @@ import Image from './components/Image Uploader/Image';
 import Album from './components/Albums/Album';
 import AlbumForm from './components/Albums/AlbumForm';
 import FullscreenImage from "./components/FullscreenImage";
+import ProfilePicture from "./components/ProfilePicture";
 
 Vue.component('navigation', Navigation);
 Vue.component('dropdown', Dropdown);
@@ -21,6 +22,7 @@ Vue.component('uploaded-image', Image);
 Vue.component('album', Album);
 Vue.component('album-form', AlbumForm);
 Vue.component('fullscreen-image', FullscreenImage);
+Vue.component('ProfilePicture', ProfilePicture);
 
 let controller = new ScrollMagic.Controller();
 let fadeIn = document.getElementsByClassName('is-fade-in');

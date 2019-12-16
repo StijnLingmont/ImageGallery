@@ -14,6 +14,8 @@
 //One pages
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::post('/dashboard/profile-picture', 'HomeController@storeProfilePicture')->name('dashboard.profile-picture.store');
+Route::get('/dashboard/profile-picture', 'HomeController@getProfilePicture')->name('dashboard.profile-picture');
 
 //Image
 Route::post('/image', 'PictureController@store')->name('image.store');

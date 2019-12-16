@@ -22,12 +22,12 @@
                                         <span></span>
                                     </div>
                                     <div id="menu-icon_pc">
-                                        <div id="nav-avatar"></div>
+                                        <div id="nav-avatar" style="background-image: url( @if(auth()->user()->profile_picture != null)'/storage/{{ auth()->user()->profile_picture }}' @else '/assets/img/default-avatar-white.svg' @endif)"></div>
                                         <i class="fas fa-angle-down"></i>
                                     </div>
                                 </template>
                                 <template>
-{{--                                    <li class="dropdown-item"><a class="dropdown-link" href="{{ route('dashboard') }}">Account</a></li>--}}
+                                    <li class="dropdown-item"><a class="dropdown-link" href="{{ route('dashboard') }}">Account</a></li>
                                     <li class="dropdown-item"><a class="dropdown-link" href="{{ route('album.index') }}">Albums</a></li>
                                     <li class="dropdown-item">
                                         <form action="{{ route('logout') }}" method="post">
