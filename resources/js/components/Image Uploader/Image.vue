@@ -31,10 +31,17 @@
         },
 
         created() {
+            this.clickToggle();
+
             this.$root.$on('deselectPicture', () => {
                 if(this.isClicked) {
                     this.clickToggle();
                 }
+            });
+
+            this.$root.$on('showPopUp', () => {
+                this.isClicked = false;
+                this.selected;
             });
         }
     }
