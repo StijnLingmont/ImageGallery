@@ -43,3 +43,52 @@
                         width: 8.5rem
                         text-align: center
                         line-height: 2rem
+                        
+        .dashboard-body
+            .dashboard-profile
+                grid-column: 1/13
+                @media(min-width: $sm-grid)
+                    grid-column: 1/7
+                .dashboard-title
+                    font-size: 2.3rem
+                    margin-bottom: .5rem
+                
+                .dashboard-item
+                    font-size: 1.2rem
+                    
+            .dashboard-buttons
+                grid-column: 1/13
+                .dashboard-title
+                    font-size: 2.3rem
+                    margin-bottom: .5rem
+                    grid-column: 1/13
+                @media(min-width: $sm-grid)
+                    grid-column: 7/13
+                    
+                .dashboard-button-box
+                    display: flex
+                    flex-direction: row
+                    height: 100%
+                    flex-wrap: wrap
+                    .dashboard-button
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        flex-direction: column
+                        margin: .2rem 0
+                        background: $color-grey-light
+                        height: 7rem
+                        width: calc(100% - .4rem)
+                        @media(min-width: $xs-grid)
+                            margin: .2rem .2rem
+                            width: calc(50% - .4rem)
+                        @media(min-width: $sm-grid)
+                            margin: .1rem .1rem
+                            width: calc(50% - .2rem)
+                        
+                        @media(min-width: $md-grid)
+                            width: calc(25% - .2rem)
+                    
+                    .dashboard-button_icon
+                        width: 50%
+                
