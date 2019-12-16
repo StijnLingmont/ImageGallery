@@ -15,7 +15,7 @@
             <div class="image-uploader_footer">
                 <div class="inputWrapper">
                     <form @change="submitForm" @submit.prevent="uploadImages(0)" type="post" id="image-form" enctype="multipart/form-data">
-                        <input type="file" name="image" id="image" class="image-uploader" multiple />
+                        <input type="file" name="image" id="image" accept="image/*" class="image-uploader" multiple />
                         <label for="image"><strong><i class="fas fa-file-upload"></i> Choose a file</strong></label>
 
                         <button ref="submitButton" type="submit" style="display: none"></button>
