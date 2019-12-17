@@ -1,0 +1,16 @@
+.alert
+    position: absolute
+    top: 0
+    left: 50%
+    transform: translateX(-50%)
+    width: 30rem
+    max-width: 90%
+    text-align: center
+    animation: alert 10s ease-in-out
+    height: 0
+    overflow: hidden
+    
+    &.alert-success
+        background-color: $color-green-light
+        color: $color-black
+        border-radius: 0 0 10px 10px

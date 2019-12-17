@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use \File;
 use App\Album;
 use App\User;
 use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\Facades\Image;
 
 class HomeController extends Controller
 {
@@ -50,10 +52,20 @@ class HomeController extends Controller
 
     public function storeProfilePicture(Request $request) {
         $validated = $request->validate([
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif']
         ]);
+
         $result = [];
-        $result['profile_picture'] = $request->file('image')->store('profile-picture', 'public');
+        $result['profile_picture'] = 'profile-picture/' . auth()->user()->id . '-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+
+        $image = Image::make($request->file('image')->getRealPath());
+        $image->resize(800, 800, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('storage/' . $result['profile_picture'] ));
+        if(auth()->user()->profile_picture != null) {
+            File::delete(public_path('storage/' . auth()->user()->profile_picture));
+        }
+
         User::where('id', '=', auth()->user()->id)->update($result);
         return response()->json(['success'=>true]);
     }

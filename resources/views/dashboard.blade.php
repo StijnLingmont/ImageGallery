@@ -20,21 +20,21 @@
                 <div class="dashboard-buttons">
                     <h1 class="dashboard-title">Dashboard</h1>
                     <div class="dashboard-button-box">
-                        <a href="" class="dashboard-button">
+                        <a href="{{ route('album.index') }}" class="dashboard-button">
                             <img class="dashboard-button_icon" src="/images/picture.svg">
                             <p>Albums</p>
                         </a>
-                        <a href="" class="dashboard-button">
-                            <img class="dashboard-button_icon" src="/images/picture.svg">
-                            <p>Albums</p>
+                        <a href="{{ route('home') }}" class="dashboard-button">
+                            <img class="dashboard-button_icon" src="/images/home.svg">
+                            <p>Homepage</p>
                         </a>
-                        <a href="" class="dashboard-button">
-                            <img class="dashboard-button_icon"  src="/images/picture.svg">
-                            <p>Albums</p>
+                        <a href="{{ route('logout') }}" class="dashboard-button">
+                            <img class="dashboard-button_icon"  src="/images/logout.svg">
+                            <p>Logout</p>
                         </a>
-                        <a href="" class="dashboard-button">
-                            <img class="dashboard-button_icon"  src="/images/picture.svg">
-                            <p>Albums</p>
+                        <a href="#" class="dashboard-button">
+                            <img class="dashboard-button_icon"  src="/images/comic-soon.svg">
+                            <p>Soon...</p>
                         </a>
                     </div>
                 </div>
