@@ -39,8 +39,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static function authenticated() {
         if(auth()->user()->email_verified_at != null) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 }

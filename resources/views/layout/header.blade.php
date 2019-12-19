@@ -43,8 +43,8 @@
             </div>
         </div>
 
-        @if(empty($verify) && Auth::check())
-            <div id="verify-message">
+        @if(!empty($verify) && Auth::check())
+            <div v-if="!transparent" id="verify-message">
                 <p>You're not verified yet. Please verify in your mail.</p>
             </div>
         @endif
