@@ -41,7 +41,7 @@
 
             this.$root.$on('showPopUp', () => {
                 this.isClicked = false;
-                this.selected;
+                this.selected();
             });
         }
     }
