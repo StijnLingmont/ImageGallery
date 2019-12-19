@@ -12,6 +12,7 @@ import Album from './components/Albums/Album';
 import AlbumForm from './components/Albums/AlbumForm';
 import FullscreenImage from "./components/FullscreenImage";
 import ProfilePicture from "./components/ProfilePicture";
+import ChangePassword from "./components/ChangePassword";
 
 Vue.component('navigation', Navigation);
 Vue.component('dropdown', Dropdown);
@@ -23,6 +24,7 @@ Vue.component('album', Album);
 Vue.component('album-form', AlbumForm);
 Vue.component('fullscreen-image', FullscreenImage);
 Vue.component('ProfilePicture', ProfilePicture);
+Vue.component('change-password', ChangePassword);
 
 let controller = new ScrollMagic.Controller();
 let fadeIn = document.getElementsByClassName('is-fade-in');

@@ -16,6 +16,33 @@
                     <p class="dashboard-item"><span class="is-bold">Naam:</span> {{ auth()->user()->name }}</p>
                     <p class="dashboard-item"><span class="is-bold">Email:</span> {{ auth()->user()->email }}</p>
                     <p class="dashboard-item"><span class="is-bold">Created at:</span> {{ date('d-m-Y', strtotime(auth()->user()->created_at)) }}</p>
+                    <change-password inline-template>
+                        <div class="change-password">
+                            <button @click="show" class="btn btn-edit">Change Password</button>
+                            <form method="post" action="{{ route('password.update') }}" class="change-password_form" ref="form">
+                                @csrf
+
+                                <div class="change-password_input">
+                                    <label for="oldpassword">Old Password:</label>
+                                    <input id="oldpassword" name="oldpassword" type="password">
+                                </div>
+
+                                <div class="change-password_input">
+                                    <label for="password">New Password:</label>
+                                    <input id="password" name="password" type="password">
+                                </div>
+
+                                <div class="change-password_input">
+                                    <label for="password-confirm">Confirm Password:</label>
+                                    <input id="password-confirm" name="password_confirmation" type="password">
+                                </div>
+
+                                <div class="change-password_input">
+                                    <button type="submit" class="btn btn-primary">Change</button>
+                                </div>
+                            </form>
+                        </div>
+                    </change-password>
                 </div>
                 <div class="dashboard-buttons">
                     <h1 class="dashboard-title">Dashboard</h1>
@@ -28,9 +55,13 @@
                             <img class="dashboard-button_icon" src="/images/home.svg">
                             <p>Homepage</p>
                         </a>
-                        <a href="{{ route('logout') }}" class="dashboard-button">
-                            <img class="dashboard-button_icon"  src="/images/logout.svg">
-                            <p>Logout</p>
+                        <form action="{{ route('logout') }}" method="post" class="dashboard-button">
+                            @csrf
+                            <button type="submit">
+                                <img class="dashboard-button_icon"  src="/images/logout.svg">
+                                <p>Logout</p>
+                            </button>
+                        </form>
                         </a>
                         <a href="#" class="dashboard-button">
                             <img class="dashboard-button_icon"  src="/images/comic-soon.svg">

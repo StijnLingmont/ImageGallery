@@ -33,4 +33,6 @@ Route::get('/albums/{album}', 'AlbumsController@show')->name('album.show');
 Route::patch('/albums/{album}', 'AlbumsController@update')->name('album.update');
 Route::delete('/albums/{album}', 'AlbumsController@destroy')->name('album.destroy');
 
+//Routes
 Auth::routes(['verify' => true]);
+Route::post('/change-password', 'Auth\ChangePasswordController@update')->name('password.update');
