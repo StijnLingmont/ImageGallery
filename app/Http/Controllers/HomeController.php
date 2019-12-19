@@ -43,6 +43,7 @@ class HomeController extends Controller
     public function dashboard() {
         return view('dashboard', [
             'user' => auth()->user(),
+            'verify' => auth()->user()->authenticated(),
         ]);
     }
 

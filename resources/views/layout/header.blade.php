@@ -1,4 +1,4 @@
-<navigation :transparent="{{  $transparentHeader ?? 0 }}" inline-template v-cloak>
+<navigation :transparent="{{  $transparentHeader ?? 0 }}" inline-template>
     <header id="header" :class="{ 'is-transparent': headerColor }">
         <div class="container grid">
             <div id="logo">
@@ -42,6 +42,12 @@
                 </ul>
             </div>
         </div>
+
+        @if(empty($verify) && Auth::check())
+            <div id="verify-message">
+                <p>You're not verified yet. Please verify in your mail.</p>
+            </div>
+        @endif
     </header>
 </navigation>
 

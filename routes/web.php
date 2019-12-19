@@ -27,10 +27,10 @@ Route::get('/albums/{album}/image/{picture}', 'PictureController@show')->name('i
 Route::post('/albums/{album}/image/{picture}', 'PictureController@detailStore')->name('image.store');
 
 //Albums
-Route::get('/albums', 'AlbumsController@index')->name('album.index');
+Route::get('/albums', 'AlbumsController@index')->name('album.index')->middleware('verified');
 Route::post('/albums', 'AlbumsController@store')->name('album.store');
 Route::get('/albums/{album}', 'AlbumsController@show')->name('album.show');
 Route::patch('/albums/{album}', 'AlbumsController@update')->name('album.update');
 Route::delete('/albums/{album}', 'AlbumsController@destroy')->name('album.destroy');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
