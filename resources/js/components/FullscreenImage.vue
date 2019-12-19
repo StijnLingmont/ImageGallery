@@ -18,6 +18,10 @@
                 <textarea rows="4" v-show="editInfo" class="info-edit" v-model="imageInfo.description" type="text"></textarea>
                 <span v-show="!editInfo" class="info-content">{{ imageInfo.description }}</span>
             </p>
+            <p>
+                <span class="info-title">Owner:</span>
+                <span class="info-content">{{ imageInfo.owner }}</span>
+            </p>
             <button class="btn btn-small btn-primary" @click="storePictureDetail" v-show="editInfo">Save</button>
             <span class="text-success" v-show="success">Saved!</span>
         </div>
@@ -50,6 +54,7 @@
                 imageInfo: {
                     title: '',
                     description: '',
+                    owner: '',
                 }
             }
         },
@@ -101,8 +106,10 @@
             getImageInfo() {
                 Axios.get('/albums/' + this.images[this.currentImage]['pivot']['album_id'] + '/image/' + this.images[this.currentImage]['id'])
                     .then((response) => {
+                        console.log(response);
                         this.imageInfo.title = response.data.images.pivot.title ? response.data.images.pivot.title : '';
                         this.imageInfo.description = response.data.images.pivot.description ? response.data.images.pivot.description : '';
+                        this.imageInfo.owner = response.data.user.name;
                     })
                     .catch((error) => {
                         console.log(error);

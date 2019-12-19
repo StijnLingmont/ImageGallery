@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Album;
 use App\Picture;
+use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -54,7 +55,9 @@ class PictureController extends Controller
     public function show(Album $album, Picture $picture) {
         $image = $album->picture()->find($picture['id']);
 
-        return response()->json(['images'=> $image]);
+        $user = User::find($image->user_id);
+
+        return response()->json(['images'=> $image, 'user' => $user]);
     }
 
     public function detailStore(Request $request, Album $album, Picture $picture) {
