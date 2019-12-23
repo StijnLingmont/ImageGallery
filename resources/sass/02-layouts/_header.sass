@@ -32,7 +32,9 @@
             max-height: 40%
 
     #header-menu
-        grid-column: 12
+        grid-column: 1/13
+        @media(min-width: $xs-grid)
+            grid-column: 6/13
         @media(min-width: $sm-grid)
             grid-column: 6/13
 
@@ -52,12 +54,14 @@
                 margin: 0 .2rem
                 .nav-link
                     color: $color-white
-                    padding: .2rem .7rem
+                    padding: .2rem .3rem
                     transition: all 200ms linear
+                    @media(min-width: $sm-grid)
+                        padding: .2rem .7rem
                     .pc-text
                         margin-left: .3rem
-                        @media(min-width: $sm-grid)
-                            display: inline
+                        display: inline
+                        
 
                     i
                         display: inline

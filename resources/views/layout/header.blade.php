@@ -1,7 +1,7 @@
 <navigation :transparent="{{  $transparentHeader ?? 0 }}" inline-template>
     <header id="header" :class="{ 'is-transparent': headerColor }">
         <div class="container grid">
-            <div id="logo">
+            <div id="logo" @guest class="is-hidden-on-mobile-small" @endguest>
                 <a href="{{ route('home') }}"><img id="logo-item" src="{{ asset('assets/img/logo.png') }}" alt="Image Gallery Logo"></a>
             </div>
 
@@ -9,10 +9,10 @@
                 <ul id="navigation">
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-user"></i><span class="pc-text is-hidden-on-mobile">Sign in</span></a>
+                            <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-user"></i><span class="pc-text">Sign in</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-sign-in-alt"></i><span class=" pc-text is-hidden-on-mobile">Sign up</span></a>
+                            <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-sign-in-alt"></i><span class=" pc-text">Sign up</span></a>
                         </li>
                     @else
                         <li class="dropdown">
