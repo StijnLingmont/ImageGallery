@@ -1,5 +1,3 @@
-![Logo](public/assets/img/logo.png)
-
 ## About Image Gallery
 
 The Image Gallery site is a school project for Web Development. It's a site like Pinterest or Pexels where users can create albums and upload pictures in them. You can check the live website [here](https://imagegallery.stijnlingmont.nl/).
