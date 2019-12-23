@@ -25,13 +25,18 @@ class HomeController extends Controller
         if($amountofRows < 100) {
             $pictures = Picture::whereHas('album', function($q){
                 $q->where('privacyStatus', '=', null);
-            })->get()->random($amountofRows);
+            })
+                ->with('album')
+                ->get()
+                ->random($amountofRows);
         } else {
             $pictures = Picture::whereHas('album', function($q){
                 $q->where('privacyStatus', '=', null);
-            })->get()->random(100);
+            })
+                ->withPivot('album_id')
+                ->get()
+                ->random(100);
         }
-
 
         $transparentHeader = true;
         return view('index', [

@@ -42,6 +42,8 @@
     export default {
         props: {
             editInfo: {type: Number, default: 0},
+            imageArray: {type: Array},
+            notLinkedToAlbum: {type: Number, default: 0},
         },
         data() {
             return {
@@ -104,16 +106,20 @@
             },
 
             getImageInfo() {
-                Axios.get('/albums/' + this.images[this.currentImage]['pivot']['album_id'] + '/image/' + this.images[this.currentImage]['id'])
-                    .then((response) => {
-                        console.log(response);
-                        this.imageInfo.title = response.data.images.pivot.title ? response.data.images.pivot.title : '';
-                        this.imageInfo.description = response.data.images.pivot.description ? response.data.images.pivot.description : '';
-                        this.imageInfo.owner = response.data.user.name;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                if(this.notLinkedToAlbum) {
+
+                } else {
+                    Axios.get('/albums/' + this.images[this.currentImage]['pivot']['album_id'] + '/image/' + this.images[this.currentImage]['id'])
+                        .then((response) => {
+                            console.log(response);
+                            this.imageInfo.title = response.data.images.pivot.title ? response.data.images.pivot.title : '';
+                            this.imageInfo.description = response.data.images.pivot.description ? response.data.images.pivot.description : '';
+                            this.imageInfo.owner = response.data.user.name;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
             },
 
             storePictureDetail() {
@@ -132,7 +138,6 @@
 
         created() {
             this.$root.$on('fullscreen', (data) => {
-                console.log(data);
                 if(data.images.length) {
                     this.images = data.images;
                 }

@@ -17,7 +17,11 @@
             <div class="is-line"></div>
 
             <div class="album-body">
-                <album :album-id="{{ $album->id }}"></album>
+                <album :album-id="{{ $album->id }}" inline-template>
+                    <div class="album-list">
+                        <img v-for="(image, key) in images" v-bind:src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" />
+                    </div>
+                </album>
             </div>
         </div>
     </section>

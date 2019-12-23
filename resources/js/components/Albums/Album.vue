@@ -1,14 +1,9 @@
-<template>
-    <div class="album-list">
-        <img v-for="(image, key) in images" v-bind:src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" />
-    </div>
-</template>
-
 <script>
     import Axios from 'axios';
     export default {
         props: {
             albumId: {type: Number, default: 0},
+            imageList: {type: Array},
         },
 
         data() {
@@ -19,13 +14,17 @@
 
         methods: {
             getPictures() {
-                Axios.post('/albums/' + this.albumId + '/image')
-                    .then((response) => {
-                        this.images = response.data;
-                    })
-                    .catch((error) => {
-                        alert(error);
-                    });
+                if(this.imageList) {
+                    this.images = this.imageList;
+                } else {
+                    Axios.post('/albums/' + this.albumId + '/image')
+                        .then((response) => {
+                            this.images = response.data;
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        });
+                }
             },
 
             fullScreen(clickedImage) {

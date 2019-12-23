@@ -12,10 +12,16 @@
         </div>
     </section>
     <section class="image-list">
-        <div class="image-list_body album-list container">
-            @foreach($pictures as $picture)
-                <img class="is-fade-in" src="/storage/{{ $picture->image }}">
-            @endforeach
-        </div>
+            <album :image-list="{{ $pictures }}" inline-template>
+                <div class="image-list_body album-list container">
+                    <img v-for="(image, key) in images" v-bind:src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" />
+                </div>
+            </album>
+{{--            @foreach($pictures as $picture)--}}
+{{--                <img class="is-fade-in" src="/storage/{{ $picture->image }}" @click=" alert('test') ">--}}
+{{--            @endforeach--}}
+
     </section>
+
+    <fullscreen-image :edit-info="0" :not-linked-to-album="1"></fullscreen-image>
 @endsection
