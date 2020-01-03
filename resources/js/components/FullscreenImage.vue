@@ -107,17 +107,24 @@
 
             getImageInfo() {
                 if(this.notLinkedToAlbum) {
-
-                } else {
-                    Axios.get('/albums/' + this.images[this.currentImage]['pivot']['album_id'] + '/image/' + this.images[this.currentImage]['id'])
+                    Axios.get('/albums/' + this.images[this.currentImage]['album'][0]['id'] + '/image/' + this.images[this.currentImage]['id'])
                         .then((response) => {
-                            console.log(response);
                             this.imageInfo.title = response.data.images.pivot.title ? response.data.images.pivot.title : '';
                             this.imageInfo.description = response.data.images.pivot.description ? response.data.images.pivot.description : '';
                             this.imageInfo.owner = response.data.user.name;
                         })
                         .catch((error) => {
-                            console.log(error);
+                            alert(error);
+                        });
+                } else {
+                    Axios.get('/albums/' + this.images[this.currentImage]['pivot']['album_id'] + '/image/' + this.images[this.currentImage]['id'])
+                        .then((response) => {
+                            this.imageInfo.title = response.data.images.pivot.title ? response.data.images.pivot.title : '';
+                            this.imageInfo.description = response.data.images.pivot.description ? response.data.images.pivot.description : '';
+                            this.imageInfo.owner = response.data.user.name;
+                        })
+                        .catch((error) => {
+                            alert(error);
                         });
                 }
             },
@@ -131,7 +138,7 @@
                         }
                     })
                     .catch((error) => {
-                        console.log(error);
+                        alert(error);
                     });
             }
         },
