@@ -28,14 +28,15 @@ class HomeController extends Controller
             })
                 ->with('album')
                 ->get()
-                ->random($amountofRows);
+                ->shuffle();
         } else {
             $pictures = Picture::whereHas('album', function($q){
                 $q->where('privacyStatus', '=', null);
             })
                 ->withPivot('album_id')
                 ->get()
-                ->random(100);
+                ->random(100)
+                ->shuffle();
         }
 
         $transparentHeader = true;
