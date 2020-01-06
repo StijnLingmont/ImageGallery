@@ -18,7 +18,7 @@
 
             <div class="album-body">
                 <album :album-id="{{ $album->id }}" inline-template v-cloak>
-                    <div class="album-list">
+                    <div ref="album" class="album-list">
                         <fade v-for="(image, key) in limitedImages" :key="key">
                             <img :src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" ref="albumImage" />
                         </fade>

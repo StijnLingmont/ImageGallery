@@ -13,8 +13,8 @@
     </section>
     <section class="image-list">
             <album :image-list="{{ $pictures }}" inline-template v-cloak>
-                <div class="image-list_body album-list container">
-                    <fade v-for="(image, key) in limitedImages" :key="key">
+                <div ref="album" class="image-list_body album-list container">
+                    <fade v-for="(image, key) in limitedImages" :key="key" v-cloak>
                         <img :src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" ref="albumImage" />
                     </fade>
                 </div>

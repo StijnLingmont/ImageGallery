@@ -1,6 +1,6 @@
 <script>
     import Axios from 'axios';
-    import ScrollMagic from 'scrollmagic';
+    import Masonry from 'masonry-layout/dist/masonry.pkgd.min';
 
     export default {
         props: {
@@ -55,6 +55,12 @@
 
         mounted() {
             this.getPictures();
+
+            console.log(this.$refs.album);
+            var msnry = new Masonry(this.$refs.album, {
+                itemSelector: '.fade',
+                columnWidth: 500
+            });
 
             this.$root.$on('getPictures', () => {
                 this.getPictures();
