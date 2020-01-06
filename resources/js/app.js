@@ -13,8 +13,12 @@ import AlbumForm from './components/Albums/AlbumForm';
 import FullscreenImage from "./components/FullscreenImage";
 import ProfilePicture from "./components/ProfilePicture";
 import ChangePassword from "./components/ChangePassword";
+import Fade from "./components/Fade";
+import LazyImageLoad from "./components/Albums/LazyImageLoad";
 
 Vue.component('navigation', Navigation);
+Vue.component('fade', Fade);
+Vue.component('lazy-image-check', LazyImageLoad);
 Vue.component('dropdown', Dropdown);
 Vue.component('popup', Popup);
 Vue.component('image-uploader', ImageUploader);
@@ -28,6 +32,8 @@ Vue.component('change-password', ChangePassword);
 
 let controller = new ScrollMagic.Controller();
 let fadeIn = document.getElementsByClassName('is-fade-in');
+
+Vue.prototype.$scrollmagic = controller; //Adding scroll magic to Vue
 
 const app = new Vue({
     el: '#page',
@@ -56,16 +62,20 @@ const app = new Vue({
         this.$on('loadFullScreen', (data) => {
             this.$emit('fullscreen', data);
         });
+
+        this.$on('addImages', () => {
+            this.$emit('addImagesToAlbum');
+        });
     }
 });
 
-for(var i = 0; i < fadeIn.length; i++)
-{
-    let element = new ScrollMagic.Scene({
-        triggerElement: fadeIn[i],
-        reverse: false,
-        triggerHook: 1
-    })
-        .setClassToggle(fadeIn[i], 'show')
-        .addTo(controller);
-}
+// for(var i = 0; i < fadeIn.length; i++)
+// {
+//     let element = new ScrollMagic.Scene({
+//         triggerElement: fadeIn[i],
+//         reverse: false,
+//         triggerHook: 1
+//     })
+//         .setClassToggle(fadeIn[i], 'show')
+//         .addTo(controller);
+// }

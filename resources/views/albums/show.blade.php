@@ -17,11 +17,15 @@
             <div class="is-line"></div>
 
             <div class="album-body">
-                <album :album-id="{{ $album->id }}" inline-template>
+                <album :album-id="{{ $album->id }}" inline-template v-cloak>
                     <div class="album-list">
-                        <img v-for="(image, key) in images" v-bind:src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" />
+                        <fade v-for="(image, key) in limitedImages" :key="key">
+                            <img :src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" ref="albumImage" />
+                        </fade>
                     </div>
                 </album>
+
+                <lazy-image-check></lazy-image-check>
             </div>
         </div>
     </section>

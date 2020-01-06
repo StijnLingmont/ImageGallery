@@ -14,9 +14,12 @@
     <section class="image-list">
             <album :image-list="{{ $pictures }}" inline-template v-cloak>
                 <div class="image-list_body album-list container">
-                    <img v-for="(image, key) in images" v-bind:src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" />
+                    <fade v-for="(image, key) in limitedImages" :key="key">
+                        <img :src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" ref="albumImage" />
+                    </fade>
                 </div>
             </album>
+        <lazy-image-check></lazy-image-check>
 {{--            @foreach($pictures as $picture)--}}
 {{--                <img class="is-fade-in" src="/storage/{{ $picture->image }}" @click=" alert('test') ">--}}
 {{--            @endforeach--}}

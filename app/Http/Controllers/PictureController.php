@@ -26,7 +26,7 @@ class PictureController extends Controller
         foreach($request->all() as $file) {
             $result = [];
             $result['user_id'] = auth()->user()->id;
-            $result['image'] = 'uploaded/' . $result['user_id'] . '_' . $round . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $result['image'] = 'uploaded/' . $result['user_id'] . '_' . $round . '_' . time() . '.jpg';
 
             $image = Image::make($file->getRealPath());
             $image->resize(800, 800, function ($constraint) {
