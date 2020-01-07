@@ -15,7 +15,7 @@
             <album :image-list="{{ $pictures }}" inline-template v-cloak>
                 <div ref="album" class="image-list_body album-list container">
                     <masonry
-                        :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
+                        :cols="{default: 3, 700: 2, 400: 1}"
                         :gutter="10"
                     >
                         <fade v-for="(image, key) in limitedImages" :key="key" v-cloak>

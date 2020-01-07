@@ -19,7 +19,7 @@
             <div class="album-body">
                 <album :album-id="{{ $album->id }}" inline-template v-cloak>
                     <div ref="album" class="album-list">
-                        <masonry :cols="{default: 4, 1000: 3, 700: 2, 400: 1}" :gutter="10">
+                        <masonry :cols="{default: 3, 700: 2, 400: 1}" :gutter="10">
                             @if(auth()->user() && ($album->user_id == auth()->user()->id))
                                 <img v-for="(image, key) in limitedImages" :key="key" :src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" ref="albumImage" />
                             @else
