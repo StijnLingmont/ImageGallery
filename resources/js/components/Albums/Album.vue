@@ -1,6 +1,5 @@
 <script>
     import Axios from 'axios';
-    import Masonry from 'masonry-layout/dist/masonry.pkgd.min';
 
     export default {
         props: {
@@ -10,7 +9,6 @@
 
         computed: {
             limitedImages(){
-                console.log(this.images.slice(0, this.loadedImages));
                 return this.images.slice(0, this.loadedImages);
             }
         },
@@ -24,6 +22,7 @@
 
         methods: {
             getPictures() {
+                this.loadedImages = 0;
                 if(this.imageList) {
                     this.images = this.imageList;
                 } else {
@@ -55,12 +54,6 @@
 
         mounted() {
             this.getPictures();
-
-            console.log(this.$refs.album);
-            var msnry = new Masonry(this.$refs.album, {
-                itemSelector: '.fade',
-                columnWidth: 500
-            });
 
             this.$root.$on('getPictures', () => {
                 this.getPictures();

@@ -14,9 +14,14 @@
     <section class="image-list">
             <album :image-list="{{ $pictures }}" inline-template v-cloak>
                 <div ref="album" class="image-list_body album-list container">
-                    <fade v-for="(image, key) in limitedImages" :key="key" v-cloak>
-                        <img :src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" ref="albumImage" />
-                    </fade>
+                    <masonry
+                        :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
+                        :gutter="10"
+                    >
+                        <fade v-for="(image, key) in limitedImages" :key="key" v-cloak>
+                            <img :src="'/storage/' + image.image" @click="fullScreen(key)" alt="Image" ref="albumImage" />
+                        </fade>
+                    </masonry>
                 </div>
             </album>
         <lazy-image-check></lazy-image-check>

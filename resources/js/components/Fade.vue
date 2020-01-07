@@ -1,5 +1,5 @@
 <template>
-    <div class="fade">
+    <div class="fade" ref="fadeBlock">
         <slot></slot>
     </div>
 </template>
@@ -21,6 +21,10 @@
             })
                 .setClassToggle(this.$el, 'is-active')
                 .addTo(this.$scrollmagic);
+
+            this.$root.$on('fadeIn', () => {
+                // this.$refs.fadeBlock.classList.add('is-active');
+            });
         },
         beforeDestroy() {
             this.scene.destroy(true);

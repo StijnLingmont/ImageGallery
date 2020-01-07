@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import ScrollMagic from 'scrollmagic';
+import VueMasonry from 'vue-masonry-css';
 
 //Components
 import Navigation from "./components/Navigation";
@@ -15,6 +16,8 @@ import ProfilePicture from "./components/ProfilePicture";
 import ChangePassword from "./components/ChangePassword";
 import Fade from "./components/Fade";
 import LazyImageLoad from "./components/Albums/LazyImageLoad";
+
+Vue.use(VueMasonry);
 
 Vue.component('navigation', Navigation);
 Vue.component('fade', Fade);
