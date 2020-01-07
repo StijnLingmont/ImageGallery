@@ -48,7 +48,18 @@
             },
 
             addImagesToLoaded() {
-                this.loadedImages = (this.loadedImages + 10 > this.images.length ? this.images.length : this.loadedImages + 10);
+                if(this.loadedImages <= 0) {
+                    this.loadedImages = 15;
+                } else {
+                    this.loadedImages = (this.loadedImages + 10 > this.images.length ? this.images.length : this.loadedImages + 10);
+                }
+                this.checkIfEnd();
+            },
+
+            checkIfEnd() {
+                if(this.loadedImages >= this.images.length) {
+                    document.getElementById('lazy-loading').innerText = '';
+                }
             }
         },
 
