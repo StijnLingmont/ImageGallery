@@ -25,9 +25,6 @@
                 </div>
             </album>
         <lazy-image-check></lazy-image-check>
-{{--            @foreach($pictures as $picture)--}}
-{{--                <img class="is-fade-in" src="/storage/{{ $picture->image }}" @click=" alert('test') ">--}}
-{{--            @endforeach--}}
 
     </section>
 
