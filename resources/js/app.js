@@ -14,8 +14,9 @@ import AlbumForm from './components/Albums/AlbumForm';
 import FullscreenImage from "./components/FullscreenImage";
 import ProfilePicture from "./components/ProfilePicture";
 import ChangePassword from "./components/ChangePassword";
-import Fade from "./components/Fade";
+import Fade from "./components/Albums/Fade";
 import LazyImageLoad from "./components/Albums/LazyImageLoad";
+import OwnedAlbumImage from "./components/Albums/OwnedAlbumImage";
 
 Vue.use(VueMasonry);
 
@@ -32,6 +33,7 @@ Vue.component('album-form', AlbumForm);
 Vue.component('fullscreen-image', FullscreenImage);
 Vue.component('ProfilePicture', ProfilePicture);
 Vue.component('change-password', ChangePassword);
+Vue.component('owned-image', OwnedAlbumImage);
 
 let controller = new ScrollMagic.Controller();
 let fadeIn = document.getElementsByClassName('is-fade-in');

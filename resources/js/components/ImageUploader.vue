@@ -92,7 +92,6 @@
                         let progress = Math.round(100 / total * loaded);
 
                         this.progressUpload = progress;
-                        console.log(progress);
                     }
                 }
             },
@@ -101,7 +100,6 @@
                 this.progressBar = true;
                 Axios.post( '/image', data, config)
                     .then((response) => {
-                        console.log(response.data);
                         let amountAfterUploading = currentFilesUploaded + response.data.amount;
                         if(amountAfterUploading < maxFiles) {
                             //Do another round

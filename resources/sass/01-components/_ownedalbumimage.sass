@@ -1,0 +1,15 @@
+.owned-image
+    position: relative
+    .delete-image
+        position: absolute
+        top: 0
+        right: 0
+        opacity: 1
+        transition: all 300ms
+    
+        @media(min-width: $md-grid)
+            opacity: 0
+            
+    &:hover
+        .delete-image
+            opacity: 1

@@ -23,6 +23,7 @@ Route::post('/image/all', 'PictureController@index')->name('image.index');
 Route::delete('/image/{picture}', 'PictureController@destroy')->name('image.destroy');
 Route::post('/albums/{album}/image', 'AlbumsController@getImages')->name('album.image.show');
 Route::post('/albums/{album}/image/add', 'AlbumsController@link')->name('album.image.store');
+Route::delete('/albums/{album}/image/{picture}', 'AlbumsController@removeLink')->name('album.image.delete');
 Route::get('/albums/{album}/image/{picture}', 'PictureController@show')->name('image.show');
 Route::post('/albums/{album}/image/{picture}', 'PictureController@detailStore')->name('image.store');
 

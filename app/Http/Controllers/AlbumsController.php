@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Album;
+use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\DocBlock\Tags\Link;
 
 class AlbumsController extends Controller
 {
@@ -81,5 +83,9 @@ class AlbumsController extends Controller
 
     public function getImages(Album $album) {
         return $album->picture()->get();
+    }
+
+    public function removeLink(Album $album, Picture $picture) {
+        $album->picture()->detach($picture);
     }
 }

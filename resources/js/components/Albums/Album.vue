@@ -60,7 +60,7 @@
                 if(this.loadedImages >= this.images.length) {
                     document.getElementById('lazy-loading').innerText = '';
                 }
-            }
+            },
         },
 
         mounted() {
