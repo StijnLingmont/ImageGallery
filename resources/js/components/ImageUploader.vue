@@ -60,7 +60,7 @@
             },
 
             uploadImages(uploadedFiles) {
-                if(this.progressing) {
+                if(!this.progressing) {
                     this.progressing = true;
                     let files = document.getElementById('image');
                     console.log(files.files);
@@ -208,7 +208,6 @@
 
             dropImage(e) {
                 e.preventDefault();
-                console.log(e.dataTransfer.files);
                 document.getElementById('image').files = e.dataTransfer.files;
 
                 this.uploadImages(0);
