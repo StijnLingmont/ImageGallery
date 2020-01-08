@@ -1,7 +1,7 @@
 <template>
     <div id="fullscreen" v-show="isActive">
         <div id="fullscreen-dashboard">
-            <div class="dashboard-item" @click="toggleInfo"><i class="fas fa-info-circle"></i></div>
+            <div class="dashboard-item" ref="dashboardInfo" @click="toggleInfo"><i class="fas fa-info-circle"></i></div>
             <div class="dashboard-item" @click="hide"><i class="fas fa-times"></i></div>
         </div>
 
@@ -112,6 +112,7 @@
                             this.imageInfo.title = response.data.images.pivot.title ? response.data.images.pivot.title : '';
                             this.imageInfo.description = response.data.images.pivot.description ? response.data.images.pivot.description : '';
                             this.imageInfo.owner = response.data.user.name;
+                            this.checkIfDetailesFilledIn();
                         })
                         .catch((error) => {
                             alert(error);
@@ -122,6 +123,7 @@
                             this.imageInfo.title = response.data.images.pivot.title ? response.data.images.pivot.title : '';
                             this.imageInfo.description = response.data.images.pivot.description ? response.data.images.pivot.description : '';
                             this.imageInfo.owner = response.data.user.name;
+                            this.checkIfDetailesFilledIn();
                         })
                         .catch((error) => {
                             alert(error);
@@ -134,13 +136,21 @@
                     .then((response) => {
                         if(response.data.status === 'success') {
                             this.success = true;
-
+                            this.checkIfDetailesFilledIn()
                         }
                     })
                     .catch((error) => {
                         alert(error);
                     });
-            }
+            },
+
+            checkIfDetailesFilledIn() {
+                if(!this.imageInfo.title.length && !this.imageInfo.description.length) {
+                    this.$refs.dashboardInfo.classList.add('important')
+                } else {
+                    this.$refs.dashboardInfo.classList.remove('important')
+                }
+            },
         },
 
         created() {
