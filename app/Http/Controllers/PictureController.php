@@ -29,6 +29,7 @@ class PictureController extends Controller
             $result['image'] = 'uploaded/' . $result['user_id'] . '_' . $round . '_' . time() . '.jpg';
 
             $image = Image::make($file->getRealPath());
+            $image->orientate();
             $image->resize(800, 800, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('storage/' . $result['image'] ));
