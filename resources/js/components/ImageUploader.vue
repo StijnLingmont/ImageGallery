@@ -8,6 +8,10 @@
                     </form>
                     <div class="body-item_image" :style="{ backgroundImage: 'url(/storage/' + image.image + ')' }" ></div>
                 </uploaded-image>
+                <div v-if="!images.length" class="image-uploader_no-images">
+                    <h1>There are no images uploaded yet.</h1>
+                    <h3>Drag and drop images or click on '<i class="fas fa-file-upload"></i> Choose a file' to upload images</h3>
+                </div>
             </div>
 
             <div class="is-line"></div>
