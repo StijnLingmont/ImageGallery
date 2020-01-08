@@ -6,7 +6,10 @@
     <section class="section album">
         <div class="container">
             <div class="album-head">
-                <h1 class="album-head_title">{{ $album->title }}</h1>
+                <div class="album-name">
+                    <h1 class="album-head_title">{{ $album->title }}</h1>
+                    <a href="{{ route('album.index') }}" class="back-album btn btn-edit"><i class="fas fa-arrow-left"></i> Back to Albums</a>
+                </div>
                 @if($ownsAlbum)
                     <div class="album-head_navigation">
                         <button @click="showPopUp" class="btn btn-primary">Voeg afbeelding toe</button>
