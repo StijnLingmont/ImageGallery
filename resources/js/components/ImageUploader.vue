@@ -1,7 +1,7 @@
 <template>
     <popup>
         <section id="image-uploader">
-            <div class="image-uploader_body">
+            <div class="image-uploader_body" ref="imageUploaderBody" @dragover.prevent="dragenter" @drop="dropImage" @dragenter="dragenter" @dragleave="dragleave">
                 <uploaded-image v-for="image in images" :image="image" v-bind:key="image.imageId" @imageSelected="imageSelected($event)" @imageDeselected="imageDeselected($event)">
                     <form @change="submitForm" @submit.prevent="remove(image.id)" method="post">
                         <button type="submit" class="remove-picture btn btn-small btn-delete"><i class="fas fa-times"></i></button>
@@ -9,8 +9,9 @@
                     <div class="body-item_image" :style="{ backgroundImage: 'url(/storage/' + image.image + ')' }" ></div>
                 </uploaded-image>
                 <div v-if="!images.length" class="image-uploader_no-images">
-                    <h1>There are no images uploaded yet.</h1>
-                    <h3>Drag and drop images or click on '<i class="fas fa-file-upload"></i> Choose a file' to upload images</h3>
+                    <img class="image-uploader_no-images-image" src="/images/picture.svg">
+                    <h1 class="image-uploader_no-images-title">There are no images uploaded yet.</h1>
+                    <h3 class="image-uploader_no-images-subtitle">Drag and drop images or click on '<i class="fas fa-file-upload"></i> Choose a file' to upload images</h3>
                 </div>
             </div>
 
@@ -59,6 +60,7 @@
 
             uploadImages(uploadedFiles) {
                 let files = document.getElementById('image');
+                console.log(files.files);
                 let config = this.storeConfig();
                 let maxFiles = files.files.length;
                 let filesARequest = 4;
@@ -181,6 +183,24 @@
                 alert(error);
                 console.log(error);
             },
+
+            dragenter() {
+                this.$refs.imageUploaderBody.classList.add('dragging');
+            },
+
+            dragleave() {
+                this.$refs.imageUploaderBody.classList.remove('dragging');
+            },
+
+            dropImage(e) {
+                e.preventDefault();
+                console.log(e.dataTransfer.files);
+                document.getElementById('image').files = e.dataTransfer.files;
+
+                this.uploadImages(0);
+
+                this.dragleave();
+            }
         },
 
         created() {

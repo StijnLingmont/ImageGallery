@@ -1,14 +1,42 @@
 #image-uploader
     .image-uploader_body
         
+        &.dragging
+            background-color: $color-primary-hover
+        
         .image-uploader_no-images
             text-align: center
             color: $color-grey
-            height: 30vh
+            height: 50vh
             display: flex
             justify-content: center
             align-items: center
             flex-direction: column
+            
+            @media(min-width: $sm-grid)
+                height: 30vh
+            
+            .image-uploader_no-images-title
+                font-size: 1.2rem
+                line-height: 1.4rem
+                @media(min-width: $sm-grid)
+                    font-size: 1.4rem
+                    line-height: 1.6rem
+                @media(min-width: $md-grid)
+                    font-size: 1.8rem
+                    line-height: 2rem
+    
+            .image-uploader_no-images-subtitle
+                font-size: 1rem
+    
+                @media(min-width: $sm-grid)
+                    font-size: 1.2rem
+                
+                @media(min-width: $md-grid)
+                    font-size: 1.3rem
+            
+            .image-uploader_no-images-image
+                height: 5rem
         
         .image-uploader_body-item
             display: inline-block
