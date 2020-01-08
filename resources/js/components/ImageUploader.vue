@@ -72,11 +72,15 @@
 
                 for(let i = uploadedFiles; i < uploadedFiles + filesARequest; i++) {
                     if(files.files[i] !== undefined) {
-                        if(files.files[i].size < 10000000) {
-                            data.append('image' + i, files.files[i]);
-                        } else {
+                        if(files.files[i].size > 10000000) {
                             uploadStatus = false;
                             this.error(files.files[i].name + 'is to large to upload. Please upload a picture under 5mb');
+
+                        } else if(files.files[i].type !== 'image/jpeg' && files.files[i].type !== 'image/png') {
+                            uploadStatus = false;
+                            this.error(files.files[i].name + ' is not an validated picture. Please upload a picture under 5mb');
+                        } else {
+                            data.append('image' + i, files.files[i]);
                         }
                     }
                 }
