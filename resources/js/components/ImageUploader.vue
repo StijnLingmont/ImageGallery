@@ -50,6 +50,7 @@
                 images: {},
                 progressBar: false,
                 selectedImages: [],
+                progressing: false,
             }
         },
 
@@ -59,33 +60,36 @@
             },
 
             uploadImages(uploadedFiles) {
-                let files = document.getElementById('image');
-                console.log(files.files);
-                let config = this.storeConfig();
-                let maxFiles = files.files.length;
-                let filesARequest = 4;
-                let uploadStatus = true;
+                if(this.progressing) {
+                    this.progressing = true;
+                    let files = document.getElementById('image');
+                    console.log(files.files);
+                    let config = this.storeConfig();
+                    let maxFiles = files.files.length;
+                    let filesARequest = 4;
+                    let uploadStatus = true;
 
-                this.progressUpload = 0;
+                    this.progressUpload = 0;
 
-                let data = new FormData();
+                    let data = new FormData();
 
-                for(let i = uploadedFiles; i < uploadedFiles + filesARequest; i++) {
-                    if(files.files[i] !== undefined) {
-                        if(files.files[i].size > 10000000) {
-                            uploadStatus = false;
-                            this.error(files.files[i].name + 'is to large to upload. Please upload a picture under 5mb');
+                    for(let i = uploadedFiles; i < uploadedFiles + filesARequest; i++) {
+                        if(files.files[i] !== undefined) {
+                            if(files.files[i].size > 10000000) {
+                                uploadStatus = false;
+                                this.error(files.files[i].name + ' is to large to upload. Please upload a picture under 5mb');
 
-                        } else if(files.files[i].type !== 'image/jpeg' && files.files[i].type !== 'image/png') {
-                            uploadStatus = false;
-                            this.error(files.files[i].name + ' is not an validated picture. Please upload a picture under 5mb');
-                        } else {
-                            data.append('image' + i, files.files[i]);
+                            } else if(files.files[i].type !== 'image/jpeg' && files.files[i].type !== 'image/png') {
+                                uploadStatus = false;
+                                this.error(files.files[i].name + ' is not an validated picture. Please upload a picture under 5mb');
+                            } else {
+                                data.append('image' + i, files.files[i]);
+                            }
                         }
                     }
-                }
-                if(uploadStatus) {
-                    this.store(data, config, maxFiles, uploadedFiles);
+                    if(uploadStatus) {
+                        this.store(data, config, maxFiles, uploadedFiles);
+                    }
                 }
             },
 
@@ -136,9 +140,11 @@
                 Axios.post( '/image/all')
                     .then((response) => {
                         this.images = response.data.images;
+                        this.progressing = false;
                     })
                     .catch((error) => {
                         this.error(error);
+                        this.progressing = false;
                     });
             },
 
@@ -170,17 +176,21 @@
             },
 
             remove(image) {
-                Axios.delete( '/image/' + image)
-                    .then((response) => {
-                        this.$root.$emit('changeAlbum', false);
-                        this.get();
-                        return true;
-                    })
-                    .catch((error) => {
-                        this.error(error);
-                        this.get();
-                        return false;
-                    });
+                if(!this.progressing) {
+                    this.progressing = true;
+                    Axios.delete( '/image/' + image)
+                        .then((response) => {
+                            this.$root.$emit('changeAlbum', false);
+                            this.get();
+                            return true;
+                        })
+                        .catch((error) => {
+                            this.error(error);
+                            this.get();
+                            this.progressing = false;
+                            return false;
+                        });
+                }
             },
 
             error(error) {
