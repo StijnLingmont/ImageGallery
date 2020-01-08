@@ -145,10 +145,12 @@
             },
 
             checkIfDetailesFilledIn() {
-                if(!this.imageInfo.title.length && !this.imageInfo.description.length) {
-                    this.$refs.dashboardInfo.classList.add('important')
-                } else {
-                    this.$refs.dashboardInfo.classList.remove('important')
+                if(this.editInfo) {
+                    if(!this.imageInfo.title.length && !this.imageInfo.description.length) {
+                        this.$refs.dashboardInfo.classList.add('important')
+                    } else {
+                        this.$refs.dashboardInfo.classList.remove('important')
+                    }
                 }
             },
         },
