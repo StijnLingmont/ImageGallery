@@ -47,10 +47,11 @@
         data() {
             return {
                 progressUpload: 0,
-                images: {},
+                images: [],
                 progressBar: false,
                 selectedImages: [],
                 progressing: false,
+                usedImages: [],
             }
         },
 
@@ -139,7 +140,12 @@
             get() {
                 Axios.post( '/image/all')
                     .then((response) => {
-                        this.images = response.data.images;
+                        this.images = [];
+                        for(let i = 0; i < response.data.images.length; i++) {
+                            if(!this.usedImages.some(el => el.id === response.data.images[i].id)) {
+                                this.images.push(response.data.images[i]);
+                            }
+                        }
                         this.progressing = false;
                     })
                     .catch((error) => {
@@ -169,6 +175,7 @@
                 Axios.post( '/albums/' + this.albumId +  '/image/add', this.selectedImages)
                     .then((response) => {
                         this.$root.$emit('changeAlbum', true);
+                        this.getUsedImages();
                     })
                     .catch((error) => {
                         this.error(error);
@@ -213,11 +220,27 @@
                 this.uploadImages(0);
 
                 this.dragleave();
-            }
+            },
+
+            getUsedImages() {
+                Axios.post('/albums/' + this.albumId + '/image')
+                    .then((response) => {
+                        console.log(response.data);
+                        this.usedImages = response.data;
+                        this.get();
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    });
+            },
         },
 
-        created() {
-            this.get();
+        mounted() {
+            this.getUsedImages();
+
+            this.$root.$on('getPictures', () => {
+                this.getUsedImages();
+            });
         }
     }
 </script>
