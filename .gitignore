@@ -3,6 +3,8 @@
 /public/storage
 /storage/framework
 /storage/logs
+/storage/app/public/profile-picture
+/storage/app/public/uploaded
 /vendor
 .env
 .env.backup

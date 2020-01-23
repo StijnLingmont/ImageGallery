@@ -10,6 +10,7 @@ If you want to clone this project to your local server then you need to follow t
 - Update composer - ``` "composer update" ```
 - Install NPM packages - ``` "npm i" ```
 - Run the production from Laravel mix - ``` "npm run production" ```
-- clone .env.example and rename it to .env then configure the file.
+- Clone .env.example and rename it to .env then configure the file.
+- Check if there is a 'profile-picture' folder in /storage/app/public. If there isn't then make a folder called 'profile-picture'.
 - Link the storage to public - ``` "php artisan storage:link" ```
 - Run artistan - ``` "php artisan serve" ```
