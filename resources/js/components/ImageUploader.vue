@@ -3,7 +3,7 @@
         <section id="image-uploader">
             <div class="image-uploader_body" ref="imageUploaderBody" @dragover.prevent="dragenter" @drop="dropImage" @dragenter="dragenter" @dragleave="dragleave">
                 <uploaded-image v-for="image in images" :image="image" v-bind:key="image.imageId" @imageSelected="imageSelected($event)" @imageDeselected="imageDeselected($event)">
-                    <form @change="submitForm" @submit.prevent="remove(image.id)" method="post">
+                    <form @change="submitForm" @submit.prevent="!progressing ? remove(image.id) : ''" method="post">
                         <button type="submit" class="remove-picture btn btn-small btn-delete"><i class="fas fa-times"></i></button>
                     </form>
                     <div class="body-item_image" :style="{ backgroundImage: 'url(/storage/' + image.image + ')' }" ></div>
@@ -52,6 +52,7 @@
                 selectedImages: [],
                 progressing: false,
                 usedImages: [],
+                removedImage: 0,
             }
         },
 
@@ -61,36 +62,32 @@
             },
 
             uploadImages(uploadedFiles) {
-                if(!this.progressing) {
-                    this.progressing = true;
-                    let files = document.getElementById('image');
-                    console.log(files.files);
-                    let config = this.storeConfig();
-                    let maxFiles = files.files.length;
-                    let filesARequest = 4;
-                    let uploadStatus = true;
+                let files = document.getElementById('image');
+                let config = this.storeConfig();
+                let maxFiles = files.files.length;
+                let filesARequest = 4;
+                let uploadStatus = true;
 
-                    this.progressUpload = 0;
+                this.progressUpload = 0;
 
-                    let data = new FormData();
+                let data = new FormData();
 
-                    for(let i = uploadedFiles; i < uploadedFiles + filesARequest; i++) {
-                        if(files.files[i] !== undefined) {
-                            if(files.files[i].size > 10000000) {
-                                uploadStatus = false;
-                                this.error(files.files[i].name + ' is to large to upload. Please upload a picture under 5mb');
+                for(let i = uploadedFiles; i < uploadedFiles + filesARequest; i++) {
+                    if(files.files[i] !== undefined) {
+                        if(files.files[i].size > 10000000) {
+                            uploadStatus = false;
+                            this.error(files.files[i].name + ' is to large to upload. Please upload a picture under 5mb');
 
-                            } else if(files.files[i].type !== 'image/jpeg' && files.files[i].type !== 'image/png') {
-                                uploadStatus = false;
-                                this.error(files.files[i].name + ' is not an validated picture. Please upload a picture under 5mb');
-                            } else {
-                                data.append('image' + i, files.files[i]);
-                            }
+                        } else if(files.files[i].type !== 'image/jpeg' && files.files[i].type !== 'image/png') {
+                            uploadStatus = false;
+                            this.error(files.files[i].name + ' is not an validated picture. Please upload a picture under 5mb');
+                        } else {
+                            data.append('image' + i, files.files[i]);
                         }
                     }
-                    if(uploadStatus) {
-                        this.store(data, config, maxFiles, uploadedFiles);
-                    }
+                }
+                if(uploadStatus) {
+                    this.store(data, config, maxFiles, uploadedFiles);
                 }
             },
 
@@ -141,16 +138,16 @@
                 Axios.post( '/image/all')
                     .then((response) => {
                         this.images = [];
+                        this.progressing = false;
                         for(let i = 0; i < response.data.images.length; i++) {
                             if(!this.usedImages.some(el => el.id === response.data.images[i].id)) {
                                 this.images.push(response.data.images[i]);
                             }
                         }
-                        this.progressing = false;
                     })
                     .catch((error) => {
-                        this.error(error);
                         this.progressing = false;
+                        this.error(error);
                     });
             },
 
@@ -183,8 +180,9 @@
             },
 
             remove(image) {
-                if(!this.progressing) {
+                if(!this.progressing && this.removedImage !== image) {
                     this.progressing = true;
+                    this.removedImage = image;
                     Axios.delete( '/image/' + image)
                         .then((response) => {
                             this.$root.$emit('changeAlbum', false);
@@ -195,6 +193,7 @@
                             this.error(error);
                             this.get();
                             this.progressing = false;
+                            this.removedImage = image;
                             return false;
                         });
                 }
@@ -225,7 +224,6 @@
             getUsedImages() {
                 Axios.post('/albums/' + this.albumId + '/image')
                     .then((response) => {
-                        console.log(response.data);
                         this.usedImages = response.data;
                         this.get();
                     })

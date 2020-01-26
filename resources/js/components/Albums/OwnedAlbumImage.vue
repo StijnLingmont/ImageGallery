@@ -13,18 +13,27 @@
             image: {type: Object, default: null},
         },
 
+        data() {
+            return {
+                processing: false,
+            }
+        },
+
         methods: {
             remove() {
-                console.log('/albums/' + this.album + '/image/' + this.image.id);
-                Axios.delete('/albums/' + this.album + '/image/' + this.image.id)
-                    .then((response) => {
-                        console.log('success');
-                        this.$root.$emit('changeAlbum');
-                    })
-                    .catch((error) => {
-                        this.error(error);
-                        this.get();
-                    });
+                if(!this.processing) {
+                    this.processing = true;
+                    Axios.delete('/albums/' + this.album + '/image/' + this.image.id)
+                        .then((response) => {
+                            console.log('success');
+                            this.$root.$emit('changeAlbum');
+                            this.processing = false
+                        })
+                        .catch((error) => {
+                            this.error(error);
+                            this.get();
+                        });
+                }
             },
         }
     }
