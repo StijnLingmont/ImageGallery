@@ -55,6 +55,10 @@
                             <img class="dashboard-button_icon" src="/images/home.svg">
                             <p>Homepage</p>
                         </a>
+                        <a href="{{ route('privacy-policy') }}" class="dashboard-button">
+                            <img class="dashboard-button_icon"  src="/images/privacy.svg">
+                            <p>Privacy Policy</p>
+                        </a>
                         <form action="{{ route('logout') }}" method="post" class="dashboard-button">
                             @csrf
                             <button type="submit">
@@ -62,10 +66,6 @@
                                 <p>Logout</p>
                             </button>
                         </form>
-                        </a>
-                        <a href="#" class="dashboard-button">
-                            <img class="dashboard-button_icon"  src="/images/comic-soon.svg">
-                            <p>Soon...</p>
                         </a>
                     </div>
                 </div>

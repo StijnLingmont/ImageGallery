@@ -76,4 +76,8 @@ class HomeController extends Controller
         User::where('id', '=', auth()->user()->id)->update($result);
         return response()->json(['success'=>true]);
     }
+
+    public function privacyPolicy() {
+        return view('privacy-statement');
+    }
 }
