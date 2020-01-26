@@ -147,9 +147,9 @@
             checkIfDetailesFilledIn() {
                 if(this.editInfo) {
                     if(!this.imageInfo.title.length && !this.imageInfo.description.length) {
-                        this.$refs.dashboardInfo.classList.add('important')
+                        this.$refs.dashboardInfo.classList.add('important');
                     } else {
-                        this.$refs.dashboardInfo.classList.remove('important')
+                        this.$refs.dashboardInfo.classList.remove('important');
                     }
                 }
             },
