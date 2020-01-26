@@ -7,8 +7,8 @@
             display: flex
             .btn
                 margin-left: auto
-        
-        
+
+
     .albums-list
         display: flex
         flex-wrap: wrap
@@ -16,7 +16,7 @@
         .album-item
             margin: 1rem .5rem
             position: relative
-    
+
             .btn
                 position: absolute
                 top: 0
@@ -25,41 +25,54 @@
                 z-index: 50
                 @media(min-width: $md-grid)
                     opacity: 0
-    
+
             .edit-album
                 left: 0
-    
+
             .remove-album
                 right: 0
-                
+
             .album-title
-                display: inline-block
                 opacity: .6
                 transition: all 200ms
+                width: 10rem
+                position: relative
+                height: 1.7rem
+                display: flex
+                align-items: center
+
+                p
+                    max-width: 85%
+                    white-space: nowrap
+                    overflow: hidden
+                    text-overflow: ellipsis
+                    display: inline-block
+                    margin-right: .1rem
+
                 .edit-input
                     display: inline-block
-            
+
             &:hover
                 .btn
                     opacity: 1
-                
+
                 .manage-button
                     opacity: 1
-                
+
                 .album-image
                     .album-image_inner
                         transform: scale(1.1)
-                        
+
                 .album-title
                     opacity: 1
-    
+
             .album-image
                 background-color: $color-grey
                 width: 10rem
                 height: 10rem
                 transition: all 200ms
                 overflow: hidden
-                
+
                 .album-image_inner
                     height: 100%
                     width: 100%

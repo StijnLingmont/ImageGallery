@@ -30,14 +30,14 @@
                             <div class="album-image">
                                 <div class="album-image_inner @if(!$album->picture->count()) default-image @endif" @if($album->picture->count()) style="background-image: url('/storage/{{ $album->picture->first()->image }}')" @endif></div>
                             </div>
-                            <p class="album-title">
-                                <span>{{ $album->title }}</span>
+                            <div class="album-title">
+                                <p>{{ $album->title }}</p>
                                 @if($album->privacyStatus)
                                     <i class="fas fa-lock"></i>
                                 @else
                                     <i class="fas fa-globe-americas"></i>
                                 @endif
-                            </p>
+                            </div>
                         </a>
                     </div>
                 @endforeach
@@ -52,8 +52,8 @@
                     <input v-if="albumId" type="hidden" name="_method" value="patch">
                     @csrf
                     <div class="forum-item">
-                        <label for="title">Title (Max 18 characters)</label>
-                        <input class="forum-input @error('title') forum-invalid @enderror" id="title" maxlength="18" type="text" name="title" value="{{ old('title') }}" v-model="title" required autocomplete="title" autofocus>
+                        <label for="title">Title</label>
+                        <input class="forum-input @error('title') forum-invalid @enderror" id="title" type="text" name="title" value="{{ old('title') }}" v-model="title" required autocomplete="title" autofocus>
 
                         @error('title')
                         <span class="text-error">
