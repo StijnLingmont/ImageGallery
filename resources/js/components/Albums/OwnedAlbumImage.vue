@@ -25,7 +25,6 @@
                     this.processing = true;
                     Axios.delete('/albums/' + this.album + '/image/' + this.image.id)
                         .then((response) => {
-                            console.log('success');
                             this.$root.$emit('changeAlbum');
                             this.processing = false
                         })

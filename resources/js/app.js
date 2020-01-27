@@ -64,6 +64,10 @@ const app = new Vue({
             }
         });
 
+        this.$on('closePopup', () => {
+            this.$emit('closePopUp');
+        });
+
         this.$on('loadFullScreen', (data) => {
             this.$emit('fullscreen', data);
         });

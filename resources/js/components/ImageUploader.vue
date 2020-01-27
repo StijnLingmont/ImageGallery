@@ -144,6 +144,7 @@
                                 this.images.push(response.data.images[i]);
                             }
                         }
+                        this.$root.$emit('closePopup');
                     })
                     .catch((error) => {
                         this.progressing = false;
