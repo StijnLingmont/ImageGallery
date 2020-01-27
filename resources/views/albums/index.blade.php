@@ -10,7 +10,7 @@
             <div class="albums-head">
                 <h1 class="albums-head_title">Albums</h1>
                 <div class="albums-head_navigation">
-                    <button @click="editForm" class="btn btn-primary">Voeg toe</button>
+                    <button @click="editForm" class="btn btn-primary">Make Album</button>
                 </div>
             </div>
 
@@ -78,7 +78,7 @@
 
                     <div class="forum-item">
                         <button class="forum-submit btn btn-primary" type="submit">
-                            Save
+                            Create
                         </button>
                     </div>
                 </form>

@@ -28,7 +28,7 @@
 
         <div class="forum-item">
             <button class="forum-submit btn btn-primary" type="submit">
-                Voeg toe
+                Make Album
             </button>
         </div>
     </form>

@@ -12,7 +12,7 @@
                 </div>
                 @if($ownsAlbum)
                     <div class="album-head_navigation">
-                        <button @click="showPopUp" class="btn btn-primary">Voeg afbeelding toe</button>
+                        <button @click="showPopUp" class="btn btn-primary">Add Picture</button>
                     </div>
                 @endif
             </div>

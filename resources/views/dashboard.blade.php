@@ -13,7 +13,7 @@
             <div class="dashboard-body grid">
                 <div class="dashboard-profile">
                     <h1 class="dashboard-title">Account</h1>
-                    <p class="dashboard-item"><span class="is-bold">Naam:</span> {{ auth()->user()->name }}</p>
+                    <p class="dashboard-item"><span class="is-bold">Name:</span> {{ auth()->user()->name }}</p>
                     <p class="dashboard-item"><span class="is-bold">Email:</span> {{ auth()->user()->email }}</p>
                     <p class="dashboard-item"><span class="is-bold">Created at:</span> {{ date('d-m-Y', strtotime(auth()->user()->created_at)) }}</p>
                     <change-password inline-template>
@@ -66,7 +66,6 @@
                                 <p>Logout</p>
                             </button>
                         </form>
-                        </a>
                     </div>
                 </div>
             </div>
