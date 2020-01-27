@@ -11,7 +11,7 @@
                 <div v-if="!images.length" class="image-uploader_no-images">
                     <img class="image-uploader_no-images-image" src="/images/picture.svg">
                     <h1 class="image-uploader_no-images-title">There are no images uploaded yet.</h1>
-                    <h3 class="image-uploader_no-images-subtitle">Drag and drop images or click on '<i class="fas fa-file-upload"></i> Choose a file' to upload images</h3>
+                    <h3 class="image-uploader_no-images-subtitle">Drag and drop images or click on '<i class="fas fa-file-upload"></i> Upload a file' to upload images</h3>
                 </div>
             </div>
 
@@ -21,13 +21,13 @@
                 <div class="inputWrapper">
                     <form @change="submitForm" @submit.prevent="uploadImages(0)" type="post" id="image-form" enctype="multipart/form-data">
                         <input type="file" name="image" id="image" accept="image/*" class="image-uploader" multiple />
-                        <label for="image"><strong><i class="fas fa-file-upload"></i> Choose a file</strong></label>
+                        <label for="image"><strong><i class="fas fa-file-upload"></i> Upload a file</strong></label>
 
                         <button ref="submitButton" type="submit" style="display: none"></button>
                     </form>
                 </div>
                 <div class="add-to-album">
-                    <button class="btn btn-primary" @click="addToAlbum"><i class="fas fa-folder-plus"></i> Voeg toe</button>
+                    <button class="btn btn-primary" @click="addToAlbum"><i class="fas fa-folder-plus"></i> Add to Album</button>
                 </div>
             </div>
         </section>

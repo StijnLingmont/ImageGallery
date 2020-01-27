@@ -14,7 +14,7 @@
                 <span v-show="!editInfo" class="info-content">{{ imageInfo.title }}</span>
             </p>
             <p v-show="imageInfo.description.length || editInfo">
-                <span class="info-title">Beschrijving:</span>
+                <span class="info-title">Description:</span>
                 <textarea rows="4" v-show="editInfo" class="info-edit" v-model="imageInfo.description" type="text"></textarea>
                 <span v-show="!editInfo" class="info-content">{{ imageInfo.description }}</span>
             </p>
